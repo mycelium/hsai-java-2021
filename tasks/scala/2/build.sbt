@@ -5,8 +5,8 @@ scalaVersion := "2.12.7"
 scalacOptions ++= Seq(
   "-deprecation",
   "-unchecked",
-  "-optimise",
-  "-Yinline-warnings"
+  "-optimise"//,
+  //"-Yinline-warnings" // -- что это такое???? Такой опции нет вообще!
 )
 
 fork := true
