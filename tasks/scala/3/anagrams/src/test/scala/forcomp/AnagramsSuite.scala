@@ -1,14 +1,12 @@
 package forcomp
 
-import org.scalatest.FunSuite
-
-import org.junit.runner.RunWith
-import org.scalatest.junit.JUnitRunner
-
+import org.scalatest.funsuite.AnyFunSuite
+import org.junit.runner.{RunWith, Runner}
+import org.scalatest.tools.Runner
 import Anagrams._
 
-@RunWith(classOf[JUnitRunner])
-class AnagramsSuite extends FunSuite {
+@RunWith(classOf[Runner])
+class AnagramsSuite extends AnyFunSuite {
 
   test("wordOccurrences: abcd") {
     assert(wordOccurrences("abcd") === List(('a', 1), ('b', 1), ('c', 1), ('d', 1)))
