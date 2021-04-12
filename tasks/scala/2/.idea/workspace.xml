@@ -2,8 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="944e180a-236a-4465-931f-50b16f3efaa0" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../java/task1/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../java/task1/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../java/task1/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../java/task1/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../java/task1/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../1/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2 — копия/build.sbt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2 — копия/project/plugins.sbt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2 — копия/src/main/scala/common/package.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2 — копия/src/main/scala/funsets/FunSets.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2 — копия/src/main/scala/funsets/Main.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/funsets/FunSets.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/funsets/FunSets.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/funsets/Main.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/funsets/Main.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../3/anagrams/src/main/scala/forcomp/Anagrams.scala" beforeDir="false" afterPath="$PROJECT_DIR$/../3/anagrams/src/main/scala/forcomp/Anagrams.scala" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -33,6 +45,7 @@
   <component name="ProjectId" id="1qqh8tY5uh3CORVJm8O9n7JfnT6" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="last_opened_file_path" value="C:/Program Files/Git/bin/git.exe" />
     <property name="project.structure.last.edited" value="Project" />
@@ -101,6 +114,7 @@
       <map>
         <entry key="$PROJECT_DIR$" value="4853421532060" />
         <entry key="$PROJECT_DIR$/build.sbt" value="3636063816" />
+        <entry key="$PROJECT_DIR$/project/build.properties" value="1396028727" />
         <entry key="$PROJECT_DIR$/project/plugins.sbt" value="1701511927" />
       </map>
     </option>
@@ -128,7 +142,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

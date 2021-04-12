@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f752233c-30ed-488f-af34-2ee3b2fbcfa2" name="Default Changelist" comment="" />
+    <list default="true" id="f752233c-30ed-488f-af34-2ee3b2fbcfa2" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2 — копия/build.sbt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2 — копия/project/plugins.sbt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2 — копия/src/main/scala/common/package.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2 — копия/src/main/scala/funsets/FunSets.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2 — копия/src/main/scala/funsets/Main.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../2/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../3/anagrams/src/main/scala/forcomp/Anagrams.scala" beforeDir="false" afterPath="$PROJECT_DIR$/../3/anagrams/src/main/scala/forcomp/Anagrams.scala" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
