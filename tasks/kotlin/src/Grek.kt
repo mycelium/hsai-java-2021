@@ -11,9 +11,11 @@ class Grek constructor()
     var path: String = "";
     var deepSearch : Boolean = false;
     var printLineNumber : Boolean = false;
+    var searchingInDirectory : Boolean = false;
 
     constructor(input : String) : this()
     {
+        searchingInDirectory = false;
         Parse(input);
     }
 
@@ -90,14 +92,19 @@ class Grek constructor()
             inputFile.forEachLine {
                 if(it.contains(this.regex))
                 {
+                    var line : String = it;
+
                     if(printLineNumber)
                     {
-                        res += "Line $n: $it";
+                        line = "$n: $line"
                     }
-                    else
+
+                    if(searchingInDirectory)
                     {
-                        res += it;
+                        line = "$filename: $line";
                     }
+
+                    res += line;
                     n++;
                 }
             };
@@ -153,6 +160,7 @@ class Grek constructor()
 
         if(inputFile.isDirectory)
         {
+            searchingInDirectory = true;
             res = findInDir(path);
         }
         else
