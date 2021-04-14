@@ -105,8 +105,9 @@ class Grek constructor()
                     }
 
                     res += line;
-                    n++;
+
                 }
+                n++;
             };
         }
         catch (exc : FileNotFoundException)
