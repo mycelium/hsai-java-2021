@@ -82,13 +82,11 @@ object Main {
   }
 
   def nextStep(money: Int, coins: List[Int]): Int = {
-    var res: Int = 0
     if (!coins.distinct.filter(_ > 0).isEmpty && money > 0) {
-      res = nextStep(money - coins.distinct.filter(_ > 0).head, coins) + nextStep(money, coins.distinct.filter(_ > 0).tail)
+      nextStep(money - coins.distinct.filter(_ > 0).head, coins) + nextStep(money, coins.distinct.filter(_ > 0).tail)
     } else if (money == 0) {
-      res = 1
-    }
-    res
+      1
+    }else 0
   }
 
 }
