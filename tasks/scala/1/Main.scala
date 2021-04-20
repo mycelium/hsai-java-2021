@@ -9,6 +9,19 @@ object Main {
         print(pascal(col, row) + " ")
       println()
     }
+
+    println("\nParentheses Balancing")
+    println(balance("())(()".toList))
+
+
+    println("[Counting section]")
+
+    print("Value : 12, coins : 2, 3 -> number of ways to get value = ")
+    println(countChange(12, List(2, 3)))
+
+    print("Value : 256, coins : 2, 4 -> number of ways to get value = ")
+    println(countChange(256, List(2, 4)))  //1
+
   }
 
   /**
@@ -23,7 +36,13 @@ object Main {
    * Exercise 2 Parentheses Balancing
    */
   def balance(chars: List[Char]): Boolean = {
-   
+    def check(chars_list: List[Char], n: Int): Boolean = chars_list match {
+      case '(' :: rest => check(rest, n + 1)
+      case ')' :: rest => if (n < 1) false else check(rest, n - 1)
+      case _ :: rest => check(rest, n)
+      case Nil => n == 0
+    }
+    check(chars, 0)
   }
 
   /**
@@ -35,10 +54,20 @@ object Main {
    */
   def countChange(money: Int, coins: List[Int]): Int = {
     def count(money: Int, coins: List[Int]): Int = {
-      if (money == 0) 1
-      else if (money > 0 && coins.nonEmpty) count(money - coins.head, coins) + count(money, coins.tail)
-      else 0
+      if (money == 0)
+      {
+        1
+      }
+      else if (coins.isEmpty || money < 0)
+      {
+        0
+      }
+      else
+      {
+        countChange(money, coins.tail) + countChange(money - coins.head, coins)
+      }
     }
-    count(money, coins)
+
+    count(money, coins.sorted)
   }
 }
