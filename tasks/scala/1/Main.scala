@@ -40,22 +40,17 @@ object Main {
    * Exercise 2 Parentheses Balancing
    */
   def balance(chars: List[Char]): Boolean = {
-    def matchBracket(chars: List[Char]): Int = {
-      var count: Int = 0
-      for (i: Int <- 0 until chars.length) {
-        if (chars.apply(i) == '(') count += 1
-        if (chars.apply(i) == ')') count -= 1
-        if (count == 0) return i
-      }
-      -1
+    def matchBracket(chars: List[Char], count: Int): Boolean = {
+      if (count < 0) return false
+      if (chars.isEmpty) count == 0
+      else if (chars.head == '(') matchBracket(chars.tail, count + 1)
+      else if (chars.head == ')') matchBracket(chars.tail, count - 1)
+      else matchBracket(chars.tail, count)
     }
 
-    if (chars.isEmpty) return true
-    if (chars.length % 2 == 1) return false
-    val index = matchBracket(chars)
-    if (index == -1) return false
-    balance(chars.slice(1, index)) && balance(chars.slice(index + 1, chars.length))
+    matchBracket(chars, 0)
   }
+
 
   /**
    * Exercise 3 Counting Change
