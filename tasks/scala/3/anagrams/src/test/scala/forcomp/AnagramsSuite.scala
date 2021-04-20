@@ -12,6 +12,7 @@ class AnagramsSuite extends FunSuite {
 
   test("wordOccurrences: abcd") {
     assert(wordOccurrences("abcd") === List(('a', 1), ('b', 1), ('c', 1), ('d', 1)))
+    println(List(('a', 2), ('b', 3)).mkString(""))
   }
 
   test("wordOccurrences: Robert") {
@@ -49,7 +50,12 @@ class AnagramsSuite extends FunSuite {
     assert(subtract(lard, r) === lad)
   }
 
-
+  test("subtract2: lard - r") {
+    val lard = List(('a', 1), ('d', 1), ('l', 1), ('r', 1))
+    val r = List(('r', 1))
+    val lad = List(('a', 1), ('d', 1), ('l', 1))
+    assert(subtract(lard, lard) === List())
+  }
 
   test("combinations: []") {
     assert(combinations(Nil) === List(Nil))
