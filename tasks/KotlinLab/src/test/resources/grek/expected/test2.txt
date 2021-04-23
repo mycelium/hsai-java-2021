@@ -1,0 +1,15 @@
+File: src/test/resources/grek/recursion/text1.txt
+<...>
+Образовался странный авангард.
+               ^
+<...>
+File: src/test/resources/grek/recursion/text4.txt
+<...>
+Людям -- расчесанным укусам
+               ^
+<...>
+Людям -- сказанным словам
+             ^
+И людям -- не сказанным словам
+                  ^
+<...>

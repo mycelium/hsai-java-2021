@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="TestGrek">
+    <test name="ComandInterpreter">
+        <classes>
+            <class name="grek.CommandInterpreterTest" />
+            <class name="grek.MatcherTest" />
+            <class name="grek.FileTest" />
+            <class name="grek.IntegrationTest" />
+        </classes>
+    </test>
+</suite>
