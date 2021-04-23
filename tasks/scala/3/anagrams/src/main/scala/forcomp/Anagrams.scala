@@ -177,13 +177,18 @@ object Anagrams {
    */
   def sentenceAnagrams(sentence: Sentence): List[Sentence] = {
     def recursive(occurrences: Occurrences): List[Sentence] = {
-      if (occurrences.isEmpty) List(Nil)
-      else for (
-        i <- combinations(occurrences) if dictionaryByOccurrences.keySet(i);
-        j <- dictionaryByOccurrences(i);
-        k <- recursive(subtract(occurrences, i))) yield {
-        j :: k
-      }
+      (for( occ <- combinations(occurrences) if occ.nonEmpty) yield {
+        (for( curr <- dictionaryByOccurrences.get(occ) match {
+          case Some(word) => word
+          case None => List()
+        }) yield {
+          if( subtract(occurrences, occ).isEmpty ) List(List(curr))
+          else {
+            for( rest <- recursive(subtract(occurrences, occ)) ) yield
+              curr :: rest
+          }
+        }).flatten
+      }).flatten
     }
 
     recursive(sentenceOccurrences(sentence))
