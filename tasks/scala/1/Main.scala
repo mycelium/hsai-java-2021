@@ -15,7 +15,25 @@ object Main {
    * Exercise 1
    */
   def pascal(c: Int, r: Int): Int = {
+    if ((c > r) || (c < 0) || (r < 0)) {
+      return 0
+    }
+    else {
+      val numinator : Int = factorial(r)
+      val denumenator : Int = factorial(c) * factorial(r - c)
+      val binomCoef : Int = numinator / denumenator
+      return binomCoef
+    }
+  }
 
+  def factorial(n: Int): Int = {
+    if (n == 0) {
+      return 1
+    }
+    else {
+      val recursionVal = n * factorial(n - 1)
+      return recursionVal
+    }
   }
 
   /**
