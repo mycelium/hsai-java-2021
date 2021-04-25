@@ -14,20 +14,20 @@ class CommandsHandler(parser: ArgParser) {
         { toInt() }.default(0)
     private val regex by parser.positional("REGES", help = "регулярка, по которой нужно искать")
         { Regex(this) }
-    private val file by parser.positional( "FILE", help = "файл/директория для поиска")
-        { File(this) }.default(File(Paths.get("").toAbsolutePath().toString()))
+    private val fileString by parser.positional( "FILE", help = "файл/директория для поиска")
+        .default(Paths.get("").toAbsolutePath().toString())
 
-    private val workingDirectory : File = File(Paths.get("").toAbsolutePath().toString())
+    private val fileRoot = File(fileString)
 
     fun getContext(file: File): Context {
-        return Context(file, regex, n, this.file.isDirectory, A, B, "./" + file.relativeTo(workingDirectory).path)
+        return Context(file, regex, n, fileRoot.isDirectory, A, B, "$fileString/${file.relativeTo(fileRoot)}")
     }
 
     fun hand(): List<List<String>> {
-        if (!r && file.isDirectory) {
+        if (!r && fileRoot.isDirectory) {
             throw IllegalArgumentException("This is directory")
         }
-        return getFiles(file)
+        return getFiles(fileRoot)
             .parallelStream()
             .map { FileStringsHandler(getContext(it)).run() }
             .toList()
