@@ -33,11 +33,11 @@ class CommandsHandler(parser: ArgParser) {
             .toList()
             .filterNot { it.isEmpty() }
     }
+}
 
-    private fun getFiles(file : File): List<File> {
-        return file
-            .walk()
-            .toList()
-            .filter { x -> x.isFile }
-    }
+fun getFiles(file : File): List<File> {
+    return file
+        .walk()
+        .toList()
+        .filter { x -> x.isFile }
 }
