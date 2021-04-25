@@ -26,6 +26,9 @@ object Main {
     }
   }
 
+  /**
+   * Recursive Factorial Calculation
+   */
   def factorial(n: Int): Int = {
     if (n == 0) {
       return 1
@@ -40,7 +43,28 @@ object Main {
    * Exercise 2 Parentheses Balancing
    */
   def balance(chars: List[Char]): Boolean = {
-   
+    val parenthesesStatus = parenthesesCheck(chars, 0)
+    return (parenthesesStatus == 0)
+  }
+
+  /**
+   * Recursive Parentheses Check
+   */
+  def parenthesesCheck(chars : List[Char], counter : Int) : Int = {
+    if (counter < 0) {
+      return counter;
+    }
+
+    if (chars.isEmpty()) {
+      return counter
+    }
+    else {
+      chars.head() match {
+        case '(' => return parenthesesCheck(chars.tail(), counter + 1)
+        case ')' => return parenthesesCheck(chars.tail(), counter - 1)
+        case  _  => return parenthesesCheck(chars.tail(), counter)
+      }
+    }
   }
 
   /**
