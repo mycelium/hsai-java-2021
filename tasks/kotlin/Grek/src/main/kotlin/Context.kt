@@ -6,4 +6,4 @@ data class Context(val file: File,
                    var r: Boolean = false,
                    var A: Int = 0,
                    var B: Int = 0,
-                   var workingDir: File)
+                   var relativeFileName: String)

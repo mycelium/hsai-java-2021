@@ -16,13 +16,14 @@ class CommandsHandler(parser: ArgParser) {
     private val file by parser.positional( "FILE", help = "файл/директория для поиска")
         { File(this) }.default(File(Paths.get("").toAbsolutePath().toString()))
 
+    private val workingDirectory : File = File(Paths.get("").toAbsolutePath().toString())
+
     fun hand() {
         if (!r && file.isDirectory) {
             throw IllegalArgumentException("This is directory")
-
         }
         getFiles(file).forEach {
-            FileStringsHandler(Context(it, regex, n, file.isDirectory, A, B, workingDirectory))
+            FileStringsHandler(Context(it, regex, n, file.isDirectory, A, B, "./" + it.relativeTo(workingDirectory).path))
                 .run()
                 .forEach{x -> println(x)}
         }
@@ -34,6 +35,4 @@ class CommandsHandler(parser: ArgParser) {
             .toList()
             .filter { x -> x.isFile }
     }
-
-    val workingDirectory : File = File(Paths.get("").toAbsolutePath().toString())
 }
