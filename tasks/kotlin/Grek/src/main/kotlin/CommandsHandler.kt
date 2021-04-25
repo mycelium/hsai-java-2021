@@ -3,6 +3,7 @@ import com.xenomachina.argparser.default
 import java.io.File
 import java.lang.IllegalArgumentException
 import java.nio.file.Paths
+import kotlin.streams.toList
 
 class CommandsHandler(parser: ArgParser) {
     private val n by parser.flagging("-n", help = "флаг номера строки")
@@ -19,7 +20,7 @@ class CommandsHandler(parser: ArgParser) {
     private val workingDirectory : File = File(Paths.get("").toAbsolutePath().toString())
 
     fun getContext(file: File): Context {
-        return Context(file, regex, n, file.isDirectory, A, B, "./" + file.relativeTo(workingDirectory).path)
+        return Context(file, regex, n, this.file.isDirectory, A, B, "./" + file.relativeTo(workingDirectory).path)
     }
 
     fun hand(): List<List<String>> {
@@ -27,7 +28,9 @@ class CommandsHandler(parser: ArgParser) {
             throw IllegalArgumentException("This is directory")
         }
         return getFiles(file)
+            .parallelStream()
             .map { FileStringsHandler(getContext(it)).run() }
+            .toList()
     }
 
     private fun getFiles(file : File): List<File> {
