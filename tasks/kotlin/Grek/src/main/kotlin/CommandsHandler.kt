@@ -31,6 +31,7 @@ class CommandsHandler(parser: ArgParser) {
             .parallelStream()
             .map { FileStringsHandler(getContext(it)).run() }
             .toList()
+            .filterNot { it.isEmpty() }
     }
 
     private fun getFiles(file : File): List<File> {
