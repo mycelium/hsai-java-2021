@@ -1,5 +1,7 @@
 import com.xenomachina.argparser.ArgParser
 import org.junit.Assert
+import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
@@ -135,6 +137,14 @@ class CommandsHandlerTest {
                 listOf("src/test/resources/dir/dir2/KISH.txt:13:Что нравится ему подкармливать волков",
                     "src/test/resources/dir/dir2/KISH.txt:18:И волки среди ночи завыли под окном",)
             )
-        ),
+        )
     )
+
+    @Test
+    fun RecursiveExceptionTest() {
+        val exception: Exception = Assertions.assertThrows(IllegalArgumentException::class.java) {
+            ArgParser(arrayOf("-n", "волк", RESOURCES)).parseInto(::CommandsHandler).hand()
+        }
+        Assert.assertEquals("This is directory", exception.message)
+    }
 }
