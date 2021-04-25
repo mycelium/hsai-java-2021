@@ -8,9 +8,9 @@ import kotlin.streams.toList
 class CommandsHandler(parser: ArgParser) {
     private val n by parser.flagging("-n", help = "флаг номера строки")
     private val r by parser.flagging("-r", help = "флаг рекурсии")
-    private val A by parser.storing("-A",  help = "число строк перед найденным")
+    private val A by parser.storing("-A",  help = "число строк после найденного")
         { toInt() }.default(0)
-    private val B by parser.storing("-B",  help = "число строк после найденного")
+    private val B by parser.storing("-B",  help = "число строк перед найденным")
         { toInt() }.default(0)
     private val regex by parser.positional("REGES", help = "регулярка, по которой нужно искать")
         { Regex(this) }

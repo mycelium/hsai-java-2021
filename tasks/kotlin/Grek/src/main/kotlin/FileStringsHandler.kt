@@ -25,7 +25,7 @@ class FileStringsHandler(val contxt: Context) {
 
         val res = mutableListOf<Int>()
         for (i in filtred) {
-            for (j in i-A..i+B) {
+            for (j in i-B..i+A) {
                 if (j >= 1 && j <= listOfLines.size) {
                     res.add(j)
                 }
