@@ -18,16 +18,16 @@ class CommandsHandler(parser: ArgParser) {
 
     private val workingDirectory : File = File(Paths.get("").toAbsolutePath().toString())
 
+    fun getContext(file: File): Context {
+        return Context(file, regex, n, file.isDirectory, A, B, "./" + file.relativeTo(workingDirectory).path)
+    }
+
     fun hand(): List<List<String>> {
         if (!r && file.isDirectory) {
             throw IllegalArgumentException("This is directory")
         }
         return getFiles(file)
-            .map {
-                FileStringsHandler(
-                Context(it, regex, n, file.isDirectory, A, B, "./" + it.relativeTo(workingDirectory).path)
-                ).run()
-            }
+            .map { FileStringsHandler(getContext(it)).run() }
     }
 
     private fun getFiles(file : File): List<File> {
