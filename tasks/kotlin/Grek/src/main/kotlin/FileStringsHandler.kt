@@ -2,7 +2,7 @@ import java.io.File
 import java.lang.IllegalArgumentException
 import java.nio.charset.Charset
 
-class FileStringsHandler(val contxt: Context) {
+class FileStringsHandler(private val contxt: Context) {
     private val listOfLinesFromFile: List<String> = getLines(contxt.file)
 
     /**
