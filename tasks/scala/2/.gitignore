@@ -1,0 +1,9 @@
+# Target folder
+/target/
+
+# SBT folder
+/.bsp/
+
+# IDE service folder
+/.idea/
+/.vscode/
