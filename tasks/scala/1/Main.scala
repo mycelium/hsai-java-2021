@@ -55,14 +55,14 @@ object Main {
       return counter;
     }
 
-    if (chars.isEmpty()) {
+    if (chars.isEmpty {
       return counter
     }
     else {
-      chars.head() match {
-        case '(' => return parenthesesCheck(chars.tail(), counter + 1)
-        case ')' => return parenthesesCheck(chars.tail(), counter - 1)
-        case  _  => return parenthesesCheck(chars.tail(), counter)
+      chars.head match {
+        case '(' => return parenthesesCheck(chars.tail, counter + 1)
+        case ')' => return parenthesesCheck(chars.tail, counter - 1)
+        case  _  => return parenthesesCheck(chars.tail, counter)
       }
     }
   }
@@ -75,6 +75,21 @@ object Main {
    * 2 and 3: 2+3.
    */
   def countChange(money: Int, coins: List[Int]): Int = {
+    if ((money < 0) || !coins.forall(value => {value > 0})) {
+      return 0
+    }
 
+    var counter = 0
+
+    for (coin <- coins) {
+      if (coin < money) {
+        counter += countChange(money - coin, coins);
+      }
+      else if (coin == money) {
+        counter += 1
+      }
+    }
+
+    return counter
   }
 }
