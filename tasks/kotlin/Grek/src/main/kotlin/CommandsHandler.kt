@@ -18,9 +18,10 @@ class CommandsHandler(parser: ArgParser) {
         .default(Paths.get("").toAbsolutePath().toString())
 
     private val fileRoot = File(fileString)
+    private val S = File.separator
 
     fun getContext(file: File): Context {
-        return Context(file, regex, n, fileRoot.isDirectory, A, B, "$fileString/${file.relativeTo(fileRoot)}")
+        return Context(file, regex, n, fileRoot.isDirectory, A, B, "$fileString${S}${file.toRelativeString(fileRoot)}")
     }
 
     fun hand(): List<List<String>> {

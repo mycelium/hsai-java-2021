@@ -11,6 +11,8 @@ import java.io.File
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class CommandsHandlerTest {
 
+    private val S = File.separator
+
     /**
      * -nr A 'Int' B 'Int' "Regex" "File/Dir"
      */
