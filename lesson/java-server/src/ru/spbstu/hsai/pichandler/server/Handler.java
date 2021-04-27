@@ -10,12 +10,17 @@ import java.nio.file.OpenOption;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import ru.spbstu.hsai.pichandler.image.Image;
 
 public class Handler implements Runnable {
 
     InputStream input;
     OutputStream output;
+    
+    Logger logger = LoggerFactory.getLogger(Handler.class);
     
     final Path storage = Path.of("storage");
 
@@ -44,15 +49,13 @@ public class Handler implements Runnable {
                 
                 Thread.sleep(10000);
             }
-            System.out.println(Thread.currentThread().getName() + " has handled everything well!");
+            logger.info(Thread.currentThread().getName() + " has handled everything well!");
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            logger.error(e.getMessage());
         } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            logger.error(e.getMessage());
         }
     }
 }
