@@ -79,17 +79,21 @@ object Main {
       return 0
     }
 
-    var counter = 0
+    return recursiveCount(money, coins)
+  }
 
-    for (coin <- coins) {
-      if (coin < money) {
-        counter += countChange(money - coin, coins);
-      }
-      else if (coin == money) {
-        counter += 1
-      }
+  def recursiveCount(money : Int, coins: List[Int]) : Int = {
+    if (money == 0) {
+      return 1
     }
-
-    return counter
+    else if (money < 0 || coins.isEmpty) {
+      return 0
+    }
+    else {
+      val currentCoin : Int = coins.head
+      val depthCount : Int = recursiveCount(money - currentCoin, coins)
+      val widthCount : Int = recursiveCount(money, coins.tail)
+      return depthCount + widthCount
+    }
   }
 }
