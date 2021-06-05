@@ -13,52 +13,40 @@ public class RandomValueTest {
 
     @Test
     public void uniformDistribTest() {
-        RandomValue X = new RandomValue("Uniform", DistributionType.UNIFORM);
+        RandomValue X = RandomValue.uniformDistribution("Uniform", -10, 10);
         ArrayList<Double> sample = X.generateSample(sampleSize);
 
         assertEquals("Uniform", X.getName());
         assertEquals(DistributionType.UNIFORM, X.getType());
         assertEquals(sampleSize, sample.size());
 
-        for (int i = 0; i < sampleSize; i++) {
-            assertEquals(sample.get(i), X.getSample().get(i));
-        }
-
         System.out.println("\nUniform Distribution Sample: ");
-        System.out.println(X.getSample());
+        System.out.println(X.generateSample(sampleSize));
     }
 
     @Test
     public void normalDistribTest() {
-        RandomValue X = new RandomValue("Normal", DistributionType.NORMAL);
+        RandomValue X = RandomValue.normalDistribution("Normal", 0, 1);
         ArrayList<Double> sample = X.generateSample(10);
 
         assertEquals("Normal", X.getName());
         assertEquals(DistributionType.NORMAL, X.getType());
         assertEquals(10, sample.size());
 
-        for (int i = 0; i < sampleSize; i++) {
-            assertEquals(sample.get(i), X.getSample().get(i));
-        }
-
         System.out.println("\nNormal Distribution Sample: ");
-        System.out.println(X.getSample());
+        System.out.println(X.generateSample(sampleSize));
     }
 
     @Test
     public void poissonDistribTest() {
-        RandomValue X = new RandomValue("Poisson", DistributionType.POISSON);
+        RandomValue X = RandomValue.poissonDistribution("Poisson", 10);
         ArrayList<Double> sample = X.generateSample(sampleSize);
 
         assertEquals("Poisson", X.getName());
         assertEquals(DistributionType.POISSON, X.getType());
         assertEquals(sampleSize, sample.size());
 
-        for (int i = 0; i < sampleSize; i++) {
-            assertEquals(sample.get(i), X.getSample().get(i));
-        }
-
         System.out.println("\nPoisson Distribution Sample: ");
-        System.out.println(X.getSample());
+        System.out.println(X.generateSample(sampleSize));
     }
 }

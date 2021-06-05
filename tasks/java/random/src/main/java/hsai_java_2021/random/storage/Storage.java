@@ -10,5 +10,13 @@ public interface Storage {
         CSV
     }
 
+    /**
+     * Stores the table of the random values. where each column
+     * represents one random value with the given distribution
+     * 
+     * @param table Array of the random values
+     * @param rowNumber Desired number of rows in the table
+     * @return Path to the file, where the table is stored
+     */
     public String saveTable(ArrayList<RandomValue> table, int rowNumber);
 }
