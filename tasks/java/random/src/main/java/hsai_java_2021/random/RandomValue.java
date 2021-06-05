@@ -68,6 +68,10 @@ public class RandomValue {
         return sample;
     }
 
+    public double generate() {
+        return distribution.random();
+    }
+
     public ArrayList<Double> generateSample(int size) {
         sample = distribution.randomSample(size);
         return sample;

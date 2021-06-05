@@ -1,5 +1,7 @@
 package hsai_java_2021.random;
 
+import static org.junit.Assert.assertNotEquals;
+
 import java.util.ArrayList;
 
 import org.junit.Before;
@@ -10,7 +12,7 @@ import hsai_java_2021.random.storage.Storage.StorageType;
 
 public class StorageTest {
     private RandomValuesTable tableCsv;
-    private RandomValuesTable tableDbf;
+    private RandomValuesTable tableDb;
     private ArrayList<RandomValue> values;
 
     @Before
@@ -20,12 +22,17 @@ public class StorageTest {
         values.add(new RandomValue("Normal", DistributionType.NORMAL));
         values.add(new RandomValue("Poisson", DistributionType.POISSON));
 
-        tableCsv = new RandomValuesTable(values, 20, StorageType.CSV);
-        tableDbf = new RandomValuesTable(values, 20, StorageType.DATABASE);
+        tableCsv = new RandomValuesTable(values, 100, StorageType.CSV);
+        tableDb = new RandomValuesTable(values, 100, StorageType.DATABASE);
     }
 
     @Test
     public void saveTableCsv() {
-        tableCsv.save();
+        assertNotEquals(null, tableCsv.save());
+    }
+
+    @Test
+    public void saveTableDb() {
+        assertNotEquals(null, tableDb.save());
     }
 }

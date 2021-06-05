@@ -13,14 +13,27 @@ public class CsvStorage implements Storage {
     private final String fileName = "random_values.csv";
 
     @Override
-    public String saveTable(ArrayList<RandomValue> table) {
+    public String saveTable(ArrayList<RandomValue> table, int rowNumber) {
+        if (table == null) {
+            System.err.println("Table is null");
+            return null;
+        }
+
+        if (rowNumber < 0) {
+            System.err.println("Table row number is < 0");
+            return null;
+        }
+
+        int columnNumber = table.size();
+
         /* Create header row */
         ArrayList<String> names = new ArrayList<String>(table.size());
-        for (RandomValue v : table) {
-            String name = v.getName();
+        for (int i = 0; i < columnNumber; i++) {
+            RandomValue value = table.get(i);
+            String name = value.getName();
 
             if (name == null) {
-                name = "Noname";
+                name = "Distribution" + i;
             }
             else {
                 name = name.replace("\n", " ");
@@ -32,28 +45,19 @@ public class CsvStorage implements Storage {
 
         String header = String.join(",", names);
 
-        /* Check if all columns have equal size */
-        int rowNumber = table.get(0).getSample().size();
-        for (RandomValue v : table) {
-            if (v.getSample().size() != rowNumber) {
-                System.err.println("Inconstant number of rows");
-                return null;
-            }
-        }
-
         /* Create array of data rows */
         ArrayList<String> tableRows = new ArrayList<String>(table.size());
         for (int i = 0; i < rowNumber; i++) {
             ArrayList<String> row = new ArrayList<String>();
 
-            for (int j = 0; j < table.size(); j++) {
-                row.add(table.get(j).getSample().get(i).toString());
+            for (int j = 0; j < columnNumber; j++) {
+                row.add(String.format("%10.5f", table.get(j).generate()).replace(",", "."));
             }
 
             tableRows.add(String.join(",", row));
         }
 
-        String filePath;
+        String filePath = null;
 
         try (InputStream istream = new FileInputStream("src/main/resources/storage.properties")) {
             Properties storageProp = new Properties();

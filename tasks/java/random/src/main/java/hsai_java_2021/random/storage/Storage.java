@@ -10,5 +10,5 @@ public interface Storage {
         CSV
     }
 
-    public String saveTable(ArrayList<RandomValue> table);
+    public String saveTable(ArrayList<RandomValue> table, int rowNumber);
 }

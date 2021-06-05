@@ -33,11 +33,11 @@ public class RandomValuesTable {
     }
 
     public String save() {
-        String filePath = storage.saveTable(table);
+        String filePath = storage.saveTable(table, rowNumber);
         if (filePath == null) {
             System.err.println("Failed to save table to CSV file");
         }
-        
+
         return filePath;
     }
 }
