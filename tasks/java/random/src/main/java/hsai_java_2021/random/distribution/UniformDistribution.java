@@ -1,22 +1,22 @@
-package hsai_java_2021.random;
+package hsai_java_2021.random.distribution;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-public class NormalDistribution implements Distribution {
-    private double mu;
-    private double sigma;
+public class UniformDistribution implements Distribution {
+    private double a;
+    private double delta;
     private Random generator;
 
-    public NormalDistribution(double mu, double sigma) {
-        this.mu = mu;
-        this.sigma = sigma;
+    public UniformDistribution(double a, double b) {
+        this.a = Math.min(a, b);
+        delta = b - a;
         generator = new Random(System.currentTimeMillis());
     }
 
     @Override
     public double random() {
-        return mu + generator.nextGaussian() * sigma;
+        return a + generator.nextDouble() * delta;
     }
 
     @Override
@@ -29,5 +29,9 @@ public class NormalDistribution implements Distribution {
 
         return sample;
     }
-    
+
+    @Override
+    public DistributionType getType() {
+        return DistributionType.UNIFORM;
+    }   
 }

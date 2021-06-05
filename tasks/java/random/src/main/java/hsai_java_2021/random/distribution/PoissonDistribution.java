@@ -1,4 +1,4 @@
-package hsai_java_2021.random;
+package hsai_java_2021.random.distribution;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -38,5 +38,9 @@ public class PoissonDistribution implements Distribution {
 
         return sample;
     }
-    
+
+    @Override
+    public DistributionType getType() {
+        return DistributionType.POISSON;
+    }   
 }

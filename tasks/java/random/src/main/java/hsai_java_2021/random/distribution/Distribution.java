@@ -1,12 +1,15 @@
-package hsai_java_2021.random;
+package hsai_java_2021.random.distribution;
 
 import java.util.ArrayList;
 
 public interface Distribution {
     public enum DistributionType {
-        CONTINUOUS,
-        DISCRETE
+        UNIFORM,
+        NORMAL,
+        POISSON
     }
+
+    DistributionType getType();
 
     double random();
 
