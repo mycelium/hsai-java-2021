@@ -1,9 +1,5 @@
 package hsai_java_2021.random;
 
-/**
- * Hello world!
- *
- */
 public class Main 
 {
     public static void main( String[] args )
