@@ -8,12 +8,6 @@
   <packaging>pom</packaging>
                   
   <name>hsai_java_lab</name>
-                  
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.8</maven.compiler.source> 
-    <maven.compiler.target>1.8</maven.compiler.target>
-  </properties>
 
   <modules>
     <module>random</module>
@@ -25,4 +19,14 @@
     <module>json_statistics</module>
     <module>graph_statistics</module>  
   </modules>
+
+  <!-- Common dependencies -->
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
 </project>

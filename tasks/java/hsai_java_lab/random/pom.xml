@@ -21,10 +21,9 @@
 
   <dependencies>
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.11</version>
-      <scope>test</scope>
+        <groupId>org.xerial</groupId>
+        <artifactId>sqlite-jdbc</artifactId>
+        <version>3.8.11.2</version>
     </dependency>
   </dependencies>
 
