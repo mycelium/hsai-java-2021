@@ -1,4 +1,4 @@
-package ru.spbstu.telematics.java.hsai_java_lab;
+package ru.spbstu.telematics.java.hsai_java_lab.storage;
 
 import static org.junit.Assert.assertTrue;
 

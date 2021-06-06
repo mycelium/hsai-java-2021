@@ -1,7 +1,5 @@
 package ru.spbstu.telematics.java.hsai_java_lab.storage;
 
-import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import ru.spbstu.telematics.java.hsai_java_lab.value.RandomValue;
@@ -21,8 +19,6 @@ public interface Storage {
      * @param rowNumber Desired number of rows in the table
      * @return Path to the file, where the table is stored
      * @throws NullPointerException if table is null
-     * @throws Exception if method failed to store table
      */
-    public String saveTable(ArrayList<RandomValue> table, String name, int rowNumber)
-        throws NullPointerException, Exception;
+    public String saveTable(ArrayList<RandomValue> table, String name, int rowNumber) throws NullPointerException, Exception;
 }

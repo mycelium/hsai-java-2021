@@ -13,7 +13,8 @@ import ru.spbstu.telematics.java.hsai_java_lab.value.RandomValue;
 public class CsvStorage implements Storage {
     @Override
     public String saveTable(ArrayList<RandomValue> table, String name, int rowNumber)
-    throws NullPointerException, Exception {
+        throws NullPointerException, Exception
+    {
         if (table == null) {
             throw new NullPointerException("Table is null");
         }
