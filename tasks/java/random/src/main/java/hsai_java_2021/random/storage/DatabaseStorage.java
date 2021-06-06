@@ -21,6 +21,16 @@ public class DatabaseStorage implements Storage {
     
     @Override
     public String saveTable(ArrayList<RandomValue> table, int rowNumber) {
+        if (table == null) {
+            System.err.println("Table is null");
+            return null;
+        }
+
+        if (rowNumber < 0) {
+            System.err.println("Table row number is < 0");
+            return null;
+        }
+        
         int columnNumber = table.size();
 
         /* Get DB path from property file */

@@ -40,7 +40,8 @@ public class RandomValuesTable {
     /**
      * Module output inerface. Saves the table into the CSV or Database
      * 
-     * @return Path to the output file, where the table is stored
+     * @return Path to the output file, where the table is stored;
+     *         Null if method failed to store table 
      */
     public String save() {
         String filePath = storage.saveTable(table, rowNumber);
