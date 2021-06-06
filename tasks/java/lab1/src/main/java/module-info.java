@@ -1,0 +1,2 @@
+module random.generator {
+}
