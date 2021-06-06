@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/CSVDAO/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Characteristics/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Common/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/DAO/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/DBDAO/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Graphics/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/JSON/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Normal/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+  </component>
+</project>

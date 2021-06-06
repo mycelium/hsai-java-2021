@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="2410f1e6-50f4-46cd-abc4-7d08e28485e7" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="$APPLICATION_HOME_DIR$/plugins/maven/lib/maven3" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="1" />
+  </component>
+  <component name="ProjectId" id="1tZli2Gvip9hWRwjYx2FLuDFZIi" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="ru.spbstu.telematics.dao.csv" />
+      <recent name="ru.spbstu.telematics.graphics" />
+      <recent name="ru.spbstu.telematics.json" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.CSVTest.testParsing">
+    <configuration name="CSVTest.testParsing" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CSVDAO" />
+      <option name="PACKAGE_NAME" value="ru.spbstu.telematics.dao.csv" />
+      <option name="MAIN_CLASS_NAME" value="ru.spbstu.telematics.dao.csv.CSVTest" />
+      <option name="METHOD_NAME" value="testParsing" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PlotterTest.testSaveGraph" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Graphics" />
+      <option name="PACKAGE_NAME" value="ru.spbstu.telematics.graphics" />
+      <option name="MAIN_CLASS_NAME" value="ru.spbstu.telematics.graphics.PlotterTest" />
+      <option name="METHOD_NAME" value="testSaveGraph" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PlotterTest.testSaveHistogram" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Graphics" />
+      <option name="PACKAGE_NAME" value="ru.spbstu.telematics.graphics" />
+      <option name="MAIN_CLASS_NAME" value="ru.spbstu.telematics.graphics.PlotterTest" />
+      <option name="METHOD_NAME" value="testSaveHistogram" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PlotterTest.testShowGraph" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Graphics" />
+      <option name="PACKAGE_NAME" value="ru.spbstu.telematics.graphics" />
+      <option name="MAIN_CLASS_NAME" value="ru.spbstu.telematics.graphics.PlotterTest" />
+      <option name="METHOD_NAME" value="testShowGraph" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PlotterTest.testShowHistogram" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Graphics" />
+      <option name="PACKAGE_NAME" value="ru.spbstu.telematics.graphics" />
+      <option name="MAIN_CLASS_NAME" value="ru.spbstu.telematics.graphics.PlotterTest" />
+      <option name="METHOD_NAME" value="testShowHistogram" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.CSVTest.testParsing" />
+        <item itemvalue="JUnit.PlotterTest.testSaveGraph" />
+        <item itemvalue="JUnit.PlotterTest.testSaveHistogram" />
+        <item itemvalue="JUnit.PlotterTest.testShowHistogram" />
+        <item itemvalue="JUnit.PlotterTest.testShowGraph" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2410f1e6-50f4-46cd-abc4-7d08e28485e7" name="Default Changelist" comment="" />
+      <created>1622984618358</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1622984618358</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="361" y="70" width="814" height="729" key="#Intentions" timestamp="1622990801420">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="70" width="814" height="729" key="#Intentions/0.0.1536.824@0.0.1536.824" timestamp="1622990801420" />
+    <state x="574" y="118" key="#com.intellij.ide.util.MemberChooser" timestamp="1623003032887">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="574" y="118" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1623003032887" />
+    <state x="473" y="149" key="#com.intellij.refactoring.encapsulateFields.EncalpsulateFieldsDialog" timestamp="1622990846786">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="473" y="149" key="#com.intellij.refactoring.encapsulateFields.EncalpsulateFieldsDialog/0.0.1536.824@0.0.1536.824" timestamp="1622990846786" />
+    <state x="551" y="281" width="433" height="268" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1623000184061">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="551" y="281" width="433" height="268" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1536.824@0.0.1536.824" timestamp="1623000184061" />
+    <state x="562" y="82" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1623004288237">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="562" y="82" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824@0.0.1536.824" timestamp="1623004288237" />
+    <state width="1493" height="261" key="GridCell.Tab.0.bottom" timestamp="1623002547162">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="261" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1623002547162" />
+    <state width="1493" height="261" key="GridCell.Tab.0.center" timestamp="1623002547162">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="261" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1623002547162" />
+    <state width="1493" height="261" key="GridCell.Tab.0.left" timestamp="1623002547145">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="261" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1623002547145" />
+    <state width="1493" height="261" key="GridCell.Tab.0.right" timestamp="1623002547162">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="261" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1623002547162" />
+    <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1623002547162">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="261" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1623002547162" />
+    <state width="1493" height="261" key="GridCell.Tab.1.center" timestamp="1623002547162">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="261" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1623002547162" />
+    <state width="1493" height="261" key="GridCell.Tab.1.left" timestamp="1623002547162">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="261" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1623002547162" />
+    <state width="1493" height="261" key="GridCell.Tab.1.right" timestamp="1623002547162">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="261" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1623002547162" />
+    <state x="299" y="67" key="Maven.ArtifactSearchDialog" timestamp="1622986578533">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="299" y="67" key="Maven.ArtifactSearchDialog/0.0.1536.824@0.0.1536.824" timestamp="1622986578533" />
+    <state x="209" y="73" key="new project wizard" timestamp="1622986840608">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="209" y="73" key="new project wizard/0.0.1536.824@0.0.1536.824" timestamp="1622986840608" />
+    <state x="425" y="187" key="run.anything.popup" timestamp="1623002822745">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1623002822745" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Normal/src/test/java/ru/spbstu/telematics/normalchecking/NormalCheckerTest.java</url>
+          <line>15</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Normal/src/main/java/ru/spbstu/telematics/normalcheking/NormalChecker.java</url>
+          <line>11</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
