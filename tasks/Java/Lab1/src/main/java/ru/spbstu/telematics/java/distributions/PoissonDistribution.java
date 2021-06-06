@@ -1,10 +1,11 @@
 package ru.spbstu.telematics.java.distributions;
 
-import java.util.ArrayList;
-
 public class PoissonDistribution implements Distribution<Integer>{
     private final double expectation;
 
+    /**
+     * @throws IllegalArgumentException if expectation is not a positive number
+     * */
     public PoissonDistribution(double expectation) {
         if(expectation <= 0)
             throw new IllegalArgumentException("Expectation should be a positive number");
@@ -14,9 +15,9 @@ public class PoissonDistribution implements Distribution<Integer>{
     }
 
     /**
-     * Randomly generates one value of Integer type.
+     * Generates one random value of Integer type.
      *
-     * @return random integer value.
+     * @return random integer value
      */
     @Override
     public Integer generateValue() {
@@ -32,25 +33,7 @@ public class PoissonDistribution implements Distribution<Integer>{
     }
 
     /**
-     * Generates sample of given size.
-     *
-     * @param size size of the sample.
-     * @return sample of values of Integer type.
-     */
-    @Override
-    public ArrayList<Integer> generateSample(int size) {
-        if(size < 0)
-            throw new IllegalArgumentException("Size of the sample cannot be a negative number");
-
-        ArrayList<Integer> sample = new ArrayList<>(size);
-        for(int i = 0; i < size; i++) {
-            sample.add(generateValue());
-        }
-        return sample;
-    }
-
-    /**
-     * @return true if distribution is discrete, false otherwise.
+     * @return true if distribution is discrete, false otherwise
      */
     @Override
     public boolean isDiscrete() {
@@ -58,7 +41,7 @@ public class PoissonDistribution implements Distribution<Integer>{
     }
 
     /**
-     * @return String containing distribution type and its parameters.
+     * @return String containing distribution type and its parameters
      * */
     @Override
     public String toString() {

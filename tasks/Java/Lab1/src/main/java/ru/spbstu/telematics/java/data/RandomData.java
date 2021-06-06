@@ -21,9 +21,13 @@ public class RandomData {
         this.name = name;
     }
 
+    public String getName() {
+        return this.name;
+    }
+
     /**
-     * @param variable variable to add to list.
-     * @return this RandomData with added variable.
+     * @param variable variable to add to list
+     * @return this RandomData with added variable
      * */
     public RandomData addVariable(Variable variable) {
         variables.add(variable);
@@ -31,16 +35,29 @@ public class RandomData {
     }
 
     /**
-     * @return list of variables' names.
+     * @return list of variables' names
      */
     public ArrayList<String> getVariablesNames() {
-        return (ArrayList<String>) variables.stream().
-                map(Variable::getName).
-                collect(Collectors.toList());
+        ArrayList<String> res = new ArrayList<>();
+        for(Variable v: variables) {
+            res.add(v.getName());
+        }
+        return res;
     }
 
     /**
-     * @return list of variables.
+     * @return list of random values: one value for each of the variables
+     * */
+    public ArrayList<Object> getTableRow() {
+        ArrayList<Object> res = new ArrayList<>();
+        for(Variable v: variables) {
+            res.add(v.generateValue());
+        }
+        return res;
+    }
+
+    /**
+     * @return list of variables
      * */
     public ArrayList<Variable> getVariables() {
         return variables;
