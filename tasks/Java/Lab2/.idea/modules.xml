@@ -3,8 +3,11 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/CSVReader/CSVReader.iml" filepath="$PROJECT_DIR$/CSVReader/CSVReader.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Characteristics/Characteristics.iml" filepath="$PROJECT_DIR$/Characteristics/Characteristics.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CheckNormal/CheckNormal.iml" filepath="$PROJECT_DIR$/CheckNormal/CheckNormal.iml" />
       <module fileurl="file://$PROJECT_DIR$/DBReader/DBReader.iml" filepath="$PROJECT_DIR$/DBReader/DBReader.iml" />
       <module fileurl="file://$PROJECT_DIR$/Lab2.iml" filepath="$PROJECT_DIR$/Lab2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RandomData/RandomData.iml" filepath="$PROJECT_DIR$/RandomData/RandomData.iml" />
     </modules>
   </component>
 </project>
