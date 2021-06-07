@@ -46,10 +46,7 @@ public class DatabaseStorage implements Storage {
 
         /* Connect to the DB */
         try {
-            Class.forName("org.sqlite.JDBC");
             connection = DriverManager.getConnection("jdbc:sqlite:" + filePath);
-        } catch (ClassNotFoundException e) {
-            throw new StorageException("Failed to find JDBC class: " + e.getMessage(), StorageType.DATABASE);
         }
         catch (SQLException e) {
             throw new StorageException("Failed to connect do DB: " + e.getMessage(), StorageType.DATABASE);
@@ -84,7 +81,7 @@ public class DatabaseStorage implements Storage {
                     }
                     String value = String.format("%10.5f", randomValue.generate()).replace(",", ".");
 
-                    sqlInsert.append(" ('" + name + "'," + value + "),");
+                    sqlInsert.append(" ('" + valueName + "'," + value + "),");
                 }
             }
 
@@ -92,6 +89,7 @@ public class DatabaseStorage implements Storage {
             sqlInsert.append(";");
             statement.execute(sqlInsert.toString());
             statement.close();
+            connection.close();
         }
         catch (SQLException e) {
             throw new StorageException("Failed to insert values into DB: " + e.getMessage(), StorageType.DATABASE);
