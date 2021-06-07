@@ -5,11 +5,6 @@ public class Poisson extends Distribution<Integer> {
     private Integer mean;
 
     public Poisson(Integer mean) {
-        this("Poisson", mean);
-    }
-
-    public Poisson(String name, Integer mean) {
-        super(name);
         this.mean = mean;
     }
 

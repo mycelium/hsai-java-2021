@@ -6,11 +6,6 @@ public class Normal extends Distribution<Double> {
     private Double mean;
 
     public Normal(Double variance, Double mean) {
-        this("Normal", variance, mean);
-    }
-
-    public Normal(String name, Double variance, Double mean) {
-        super(name);
         this.variance = variance;
         this.mean = mean;
     }
