@@ -1,36 +1,69 @@
 package ru.spbstu.telematics.table;
 
-import ru.spbstu.telematics.distributions.Distributed;
+import ru.spbstu.telematics.samples.AutoSample;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Table {
 
-    private List<Distributed<?>> table;
+    private List<AutoSample<?>> table;
     private String name;
-    private int numberOfLines;
 
-    public Table(String name, int size) {
-        this(name, new ArrayList<>(), size);
-    }
-
-    public Table(String name, List<Distributed<?>> distributions, int numberOfLines) {
+    public Table(String name) {
         this.name = name;
-        this.table = distributions;
-        this.numberOfLines = numberOfLines;
+        this.table = new ArrayList<>();
     }
 
-    public void add(Distributed<?> distributed) {
-        table.add(distributed);
+    public Table add(AutoSample<?> sample) {
+        addSizeCheck(sample);
+        table.add(sample);
+        return this;
     }
 
-    public int setSize(int newNumberOfLines) {
-        if (newNumberOfLines < 0) {
-            throw new IllegalArgumentException();
+    public Table generate(int numberOfValues) {
+        for (AutoSample<?> sample : table) {
+            sample.generate(numberOfValues);
         }
-        int oldNumberOfLines = numberOfLines;
-        numberOfLines = newNumberOfLines;
-        return oldNumberOfLines;
+        return this;
+    }
+
+    /**
+     * @return Лист строк, где каждая строка это набор случайных значений, по 1-му из каждого распределения
+     */
+    public List<String[]> getTableValues() {
+        List<String[]> lines = new ArrayList<>(getNumberOfValues());
+        for (int i = 0; i < getNumberOfValues(); i++) {
+            String[] line = new String[table.size()];
+            for (int j = 0; j < table.size(); j++) {
+                line[j] = table.get(j).get(i).toString();
+            }
+            lines.set(i, line);
+        }
+        return lines;
+    }
+
+    public String[] getSamplesName() {
+        return (String[]) table.stream()
+                .map(AutoSample::getName)
+                .toArray();
+    }
+
+    public String getTableName() {
+        return name;
+    }
+
+    public Integer getNumberOfValues() {
+        var founded = table.stream().findAny();
+        if (founded.isPresent()) {
+            return founded.get().size();
+        }
+        return null;
+    }
+
+    private void addSizeCheck(AutoSample<?> addedSample) {
+        if (getNumberOfValues() != null && getNumberOfValues() != addedSample.size()) {
+            throw new IllegalArgumentException("All samples must have same size for table");
+        }
     }
 }
