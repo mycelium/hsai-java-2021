@@ -1,7 +1,5 @@
 package ru.spbstu.telematics.java.hsai_java_lab.value;
 
-import java.util.ArrayList;
-
 import ru.spbstu.telematics.java.hsai_java_lab.distribution.Distribution;
 import ru.spbstu.telematics.java.hsai_java_lab.distribution.Distribution.DistributionType;
 import ru.spbstu.telematics.java.hsai_java_lab.distribution.NormalDistribution;
@@ -12,7 +10,6 @@ public class RandomValue {
     private String name;
     private DistributionType type;
     private Distribution distribution;
-    private ArrayList<Double> sample;
 
     /**
      * Creates the instance of the random value
@@ -81,17 +78,6 @@ public class RandomValue {
     }
 
     /**
-     * Generates the sequence of random values with the given distribution
-     * 
-     * @param size Size of the sequence
-     * @return Sequence of random values
-     */
-    public ArrayList<Double> generateSample(int size) {
-        sample = distribution.randomSample(size);
-        return sample;
-    }
-
-    /**
      * Private constructor
      * 
      * @param name Name of the random value
@@ -102,6 +88,5 @@ public class RandomValue {
         this.name = name;
         this.type = type;
         this.distribution = distribution;
-        this.sample = new ArrayList<Double>();
     }
 }

@@ -11,16 +11,16 @@ import java.util.Properties;
 import ru.spbstu.telematics.java.hsai_java_lab.value.RandomValue;
 
 public class CsvStorage implements Storage {
+    private final String propertyPath = "src/main/resources/storage.properties";
+
     @Override
-    public String saveTable(ArrayList<RandomValue> table, String name, int rowNumber)
-        throws NullPointerException, Exception
-    {
+    public String saveTable(ArrayList<RandomValue> table, String name, int rowNumber) throws StorageException {
         if (table == null) {
-            throw new NullPointerException("Table is null");
+            throw new NullPointerException("Random Value Table is null");
         }
 
         if (rowNumber < 0) {
-            throw new Exception("Table row number is < 0");
+            throw new IllegalArgumentException("Table row number is less then 0");
         }
 
         String tableName = (name == null) ? "RandomValueTable" : name;
@@ -57,32 +57,43 @@ public class CsvStorage implements Storage {
             tableRows.add(String.join(",", row));
         }
 
+        /* Open/Create File to write data */
         String filePath;
 
-        try (InputStream istream = new FileInputStream("src/main/resources/storage.properties")) {
+        try (InputStream istream = new FileInputStream(propertyPath)) {
             Properties storageProp = new Properties();
             storageProp.load(istream);
             filePath = storageProp.getProperty("csv.folder") + "/" + tableName + ".csv";
         }
         catch (IOException e) {
-            throw new Exception("Failed to open Storage Properties file");
+            throw new StorageException("Failed to open Storage Properties file: " + e.getMessage(), StorageType.CSV);
         }
 
+        /* Populate File with data */
         try {
             File fout = new File(filePath);
             FileWriter foutWriter = new FileWriter(fout);
 
             foutWriter.write(header + "\n");
+            
+            ArrayList<String> row = new ArrayList<String>();
+            for (int i = 0; i < rowNumber; i++) {
+                row.clear();
 
-            for (String s : tableRows) {
-                foutWriter.write(s + "\n");
+                for (int j = 0; j < columnNumber; j++) {
+                    row.add(String.format("%10.5f", table.get(j).generate()).replace(",", "."));
+                }
+
+                foutWriter.write(String.join(",", row) + "\n");
             }
-
+                
             foutWriter.flush();
+            foutWriter.close();
+            
             filePath = fout.getAbsolutePath();
         }
         catch (IOException e) {
-            throw new Exception("Failed to open CSV output file");
+            throw new StorageException("Failed to open CSV output file: " + e.getMessage(), StorageType.CSV);
         }
         
         return filePath;

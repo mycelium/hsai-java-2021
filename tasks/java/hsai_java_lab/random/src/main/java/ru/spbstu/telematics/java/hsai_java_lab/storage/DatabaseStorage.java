@@ -20,15 +20,13 @@ public class DatabaseStorage implements Storage {
     private final String sqlTableName = "random_values_table";
     
     @Override
-    public String saveTable(ArrayList<RandomValue> table, String name, int rowNumber)
-        throws NullPointerException, Exception
-    {
+    public String saveTable(ArrayList<RandomValue> table, String name, int rowNumber) throws StorageException {
         if (table == null) {
-            throw new NullPointerException("Table is null");
+            throw new NullPointerException("Random Value Table is null");
         }
 
         if (rowNumber < 0) {
-            throw new Exception("Table row number is < 0");
+            throw new IllegalArgumentException("Table row number is less then 0");
         }
         
         String tableName = (name == null) ? "RandomValueTable" : name;
@@ -43,7 +41,7 @@ public class DatabaseStorage implements Storage {
             filePath = storageProp.getProperty("db.folder") + "/" + tableName + ".db";
         }
         catch (IOException e) {
-            throw e;
+            throw new StorageException("Failed to open Storage Properties file: " + e.getMessage(), StorageType.DATABASE);
         }
 
         /* Connect to the DB */
@@ -51,10 +49,10 @@ public class DatabaseStorage implements Storage {
             Class.forName("org.sqlite.JDBC");
             connection = DriverManager.getConnection("jdbc:sqlite:" + filePath);
         } catch (ClassNotFoundException e) {
-            throw e;
+            throw new StorageException("Failed to find JDBC class: " + e.getMessage(), StorageType.DATABASE);
         }
         catch (SQLException e) {
-            throw e;
+            throw new StorageException("Failed to connect do DB: " + e.getMessage(), StorageType.DATABASE);
         }
 
         /* Create table in the DB */
@@ -70,7 +68,7 @@ public class DatabaseStorage implements Storage {
             );
         }
         catch (SQLException e) {
-            throw e;
+            throw new StorageException("Failed to create table in DB: " + e.getMessage(), StorageType.DATABASE);
         }
         
         /* Populate DB with data */
@@ -96,11 +94,11 @@ public class DatabaseStorage implements Storage {
             statement.close();
         }
         catch (SQLException e) {
-            throw e;
+            throw new StorageException("Failed to insert values into DB: " + e.getMessage(), StorageType.DATABASE);
         }
 
-        File fout = new File(filePath);
-
-        return fout.getAbsolutePath();
+        filePath = new File(filePath).getAbsolutePath();
+        
+        return filePath;
     }
 }

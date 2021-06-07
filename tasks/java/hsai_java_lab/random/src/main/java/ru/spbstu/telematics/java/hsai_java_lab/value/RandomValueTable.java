@@ -6,6 +6,7 @@ import ru.spbstu.telematics.java.hsai_java_lab.storage.CsvStorage;
 import ru.spbstu.telematics.java.hsai_java_lab.storage.DatabaseStorage;
 import ru.spbstu.telematics.java.hsai_java_lab.storage.Storage;
 import ru.spbstu.telematics.java.hsai_java_lab.storage.Storage.StorageType;
+import ru.spbstu.telematics.java.hsai_java_lab.storage.StorageException;
 
 public class RandomValueTable {
     private String name;
@@ -32,7 +33,7 @@ public class RandomValueTable {
         }
         
         this.name = (name == null) ? "RandomValueTable" : name;
-        this.rowNumber = (sampleSize < 0) ? 0 : sampleSize;
+        this.rowNumber = (sampleSize < 0) ? 1 : sampleSize;
 
         switch (storageType) {
             case CSV:
@@ -49,10 +50,10 @@ public class RandomValueTable {
     /**
      * Module output inerface. Saves the table into the CSV or Database
      * 
-     * @return Path to the output file, where the table is stored;
-     *         Null if method failed to store table 
+     * @return Path to the output file, where the table is stored
+     * @throws StorageException if method failed to store the data
      */
-    public String save() throws NullPointerException, Exception{
+    public String save() throws StorageException {
         try {
             String filePath = storage.saveTable(table, name, rowNumber);
             return filePath;
@@ -61,7 +62,7 @@ public class RandomValueTable {
             System.err.println("Failed to save table");
             throw e;
         }
-        catch (Exception e) {
+        catch (StorageException e) {
             System.err.println("Failed to save table");
             throw e;
         }

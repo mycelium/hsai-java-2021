@@ -19,6 +19,8 @@ public interface Storage {
      * @param rowNumber Desired number of rows in the table
      * @return Path to the file, where the table is stored
      * @throws NullPointerException if table is null
+     * @throws IllegalArgumentException if {@code rowNumber} is less than 0
+     * @throws StorageException if method failed to store the tables
      */
-    public String saveTable(ArrayList<RandomValue> table, String name, int rowNumber) throws NullPointerException, Exception;
+    public String saveTable(ArrayList<RandomValue> table, String name, int rowNumber) throws StorageException;
 }

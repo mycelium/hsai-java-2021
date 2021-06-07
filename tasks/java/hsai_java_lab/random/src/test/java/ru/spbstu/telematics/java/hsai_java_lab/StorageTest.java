@@ -6,6 +6,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import ru.spbstu.telematics.java.hsai_java_lab.storage.StorageException;
 import ru.spbstu.telematics.java.hsai_java_lab.storage.Storage.StorageType;
 import ru.spbstu.telematics.java.hsai_java_lab.value.RandomValue;
 import ru.spbstu.telematics.java.hsai_java_lab.value.RandomValueTable;
@@ -35,8 +36,8 @@ public class StorageTest {
         catch (NullPointerException e) {
             Assert.fail("Unexpected Nullptr exception");
         }
-        catch (Exception e) {
-            Assert.fail("Unexpected Exception");
+        catch (StorageException e) {
+            Assert.fail("Unexpected Storage Exception");
         } 
     }
 
@@ -49,8 +50,8 @@ public class StorageTest {
         catch (NullPointerException e) {
             Assert.fail("Unexpected Nullptr exception");
         }
-        catch (Exception e) {
-            Assert.fail("Unexpected Exception");
+        catch (StorageException e) {
+            Assert.fail("Unexpected Storage Exception");
         }
     }
 }
