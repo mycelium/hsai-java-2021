@@ -4,19 +4,19 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import org.junit.Test;
 
 import ru.spbstu.telematics.java.hsai_java_lab.value.RandomValueSample;
 
-public class CsvReaderTest 
+public class DatabaseReaderTest 
 {
     @Test
-    public void openCsvFileTest() throws FileNotFoundException {
+    public void openDbFileTest() throws FileNotFoundException {
         try {
-            CsvReader reader = new CsvReader("src/test/test_data/test.csv");
+            DatabaseReader reader = new DatabaseReader("src/test/test_data/test.db");
         }
         catch (FileNotFoundException e) {
             throw e;
@@ -27,9 +27,9 @@ public class CsvReaderTest
     }
 
     @Test(expected = NullPointerException.class)
-    public void openNullCsvFileTest() throws FileNotFoundException {
+    public void openNullDbFileTest() throws FileNotFoundException {
         try {
-            CsvReader reader = new CsvReader(null);
+            DatabaseReader reader = new DatabaseReader(null);
             assertNotNull(reader);
         }
         catch (FileNotFoundException e) {
@@ -43,7 +43,7 @@ public class CsvReaderTest
     @Test(expected = FileNotFoundException.class)
     public void openFnfCsvFileTest() throws FileNotFoundException{
         try {
-            CsvReader reader = new CsvReader("src/test/test_data/garbage.csv");
+            DatabaseReader reader = new DatabaseReader("src/test/test_data/garbage.db");
         }
         catch (FileNotFoundException e) {
             throw e;
@@ -54,11 +54,11 @@ public class CsvReaderTest
     }
 
     @Test
-    public void readCsvTest() throws FileNotFoundException, IOException {
-        CsvReader reader;
+    public void readCsvTest() throws FileNotFoundException, SQLException {
+        DatabaseReader reader;
 
         try {
-            reader = new CsvReader("src/test/test_data/test.csv");
+            reader = new DatabaseReader("src/test/test_data/test.db");
             ArrayList<RandomValueSample> samples = reader.readSamples();
             assertEquals(3, samples.size());
             assertEquals("Uniform", samples.get(0).getName());
@@ -71,15 +71,11 @@ public class CsvReaderTest
         catch (NullPointerException e) {
             throw e;
         }
-        catch (FileNotFoundException e) {
-            throw e;
-        }
         catch (NumberFormatException e) {
             throw e;
         }
-        catch (IOException e) {
+        catch (SQLException e) {
             throw e;
         }
-        
     }
 }
