@@ -252,6 +252,38 @@ object Anagrams {
    *
    *  Note: There is only one anagram of an empty sentence.
    */
-  def sentenceAnagrams(sentence: Sentence): List[Sentence] = ???
+  def sentenceAnagrams(sentence: Sentence): List[Sentence] = {
+
+    def GetOccurrencesLists(occList: List[List[Occurrences]],
+                            curSeq: List[Occurrences],
+                            curOccurrence: Occurrences): List[List[Occurrences]] = {
+      if (curOccurrence != Nil) {
+        var combs: List[Occurrences] = combinations(curOccurrence).
+          filter(oc => dictionaryByOccurrences.contains(oc))
+        if (combs != Nil) {
+          flatten(combs.map(
+            c => GetOccurrencesLists(subtract(curOccurrence, c), c :: curSeq, occList)))
+        }
+        else {
+          occList
+        }
+      }
+      else {
+        curSeq :: occList;
+      }
+    }
+
+    def OccListSubsentences(occList: List[Occurrences], sentence: Sentence): List[Sentence] = occList match {
+      case oc :: rest => flatten(dictionaryByOccurrences.getOrElse(oc, Nil)
+        .map(word => OccListSubsentences(rest, word :: sentence)))
+      case Nil => List(sentence.reverse)
+    }
+
+    val occurrences: Occurrences = sentenceOccurrences(sentence)
+    flatten(
+      GetOccurrencesLists(Nil, Nil, occurrences)
+        .map(sk => OccListSubsentences(sk, Nil))
+    )
+  }
 
 }
