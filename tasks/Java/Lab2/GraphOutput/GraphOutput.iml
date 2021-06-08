@@ -6,14 +6,28 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/resources" type="java-test-resource" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="Common" />
+    <orderEntry type="library" name="Maven: org.knowm.xchart:xchart:3.5.2" level="project" />
+    <orderEntry type="library" name="Maven: de.erichseifert.vectorgraphics2d:VectorGraphics2D:0.13" level="project" />
+    <orderEntry type="module" module-name="RandomData" scope="TEST" />
+    <orderEntry type="module" module-name="CSVReader" scope="TEST" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.apache.commons:commons-csv:1.8" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: junit:junit:4.12" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.hamcrest:hamcrest-core:1.3" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.30" level="project" />
     <orderEntry type="library" name="Maven: ch.qos.logback:logback-classic:1.2.3" level="project" />
     <orderEntry type="library" name="Maven: ch.qos.logback:logback-core:1.2.3" level="project" />
+    <orderEntry type="library" name="Maven: commons-cli:commons-cli:1.4" level="project" />
+    <orderEntry type="module" module-name="DBReader" />
+    <orderEntry type="module" module-name="CheckNormal" />
+    <orderEntry type="module" module-name="CharsContainer" />
+    <orderEntry type="module" module-name="Characteristics" />
+    <orderEntry type="module" module-name="JSONOutput" />
   </component>
 </module>

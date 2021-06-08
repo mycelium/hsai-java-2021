@@ -27,7 +27,7 @@ public class SamplesForTests {
             0.68803328, -0.77388433,  0.05348545, -1.8665719 , -0.33393608
     };
 
-    private static double[] normalCharacteristics = {0.06086440130000001, 1.0763765128584193,
+    private static double[] normalCharacteristics = {0.06086440130000001,
             0.052593085, -2.46115831, 2.43662802};
 
     public static double[] poisson = {
@@ -41,7 +41,7 @@ public class SamplesForTests {
     };
 
 
-    private static double[] poissonCharacteristics = {5.35, 5.3875, 5.0, 0.0, 11.0};
+    private static double[] poissonCharacteristics = {5.35, 5.0, 0.0, 11.0};
 
     private static double[] uniform = {
             0.29919619, 0.28106674, 0.20482459, 0.00862214, 0.19977645,
@@ -67,7 +67,7 @@ public class SamplesForTests {
     };
 
 
-    private static double[] uniformCharacteristics = {0.4475575114, 0.08865207492000411,
+    private static double[] uniformCharacteristics = {0.4475575114,
             0.42102933499999995, 0.0052606, 0.99088404};
 
     public static Sample getNormalSample() {
@@ -92,5 +92,17 @@ public class SamplesForTests {
             values.add(uniform[i]);
         }
         return new Sample("Poisson sample", values);
+    }
+
+    public static double[] getNormalCharacteristics() {
+        return normalCharacteristics;
+    }
+
+    public static double[] getPoissonCharacteristics() {
+        return poissonCharacteristics;
+    }
+
+    public static double[] getUniformCharacteristics() {
+        return uniformCharacteristics;
     }
 }

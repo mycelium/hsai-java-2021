@@ -12,6 +12,9 @@ import java.util.HashMap;
 public class CheckNormal {
     static private Logger logger = LoggerFactory.getLogger(CheckNormal.class);
 
+    /**
+     * Finds out whether sample is distributed normally or not.
+     * */
     static public boolean isNormal (Sample sample) {
         logger.info("Checking if variable " + sample.getName() + " is normal...");
         ArrayList<Double> tmp = new ArrayList<>(sample.getValues());

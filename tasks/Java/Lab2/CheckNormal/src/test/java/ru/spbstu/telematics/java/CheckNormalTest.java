@@ -38,7 +38,7 @@ public class CheckNormalTest
             assertFalse(CheckNormal.isNormal(variables.get(2)));
             assertFalse(CheckNormal.isNormal(variables.get(3)));
         } catch (IOException e) {
-            e.printStackTrace();
+            assertTrue(false);
         }
     }
 }

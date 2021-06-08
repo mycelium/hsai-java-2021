@@ -23,5 +23,14 @@
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.30" level="project" />
     <orderEntry type="library" name="Maven: ch.qos.logback:logback-classic:1.2.3" level="project" />
     <orderEntry type="library" name="Maven: ch.qos.logback:logback-core:1.2.3" level="project" />
+    <orderEntry type="library" name="Maven: commons-cli:commons-cli:1.4" level="project" />
+    <orderEntry type="module" module-name="DBReader" />
+    <orderEntry type="module" module-name="CheckNormal" />
+    <orderEntry type="module" module-name="CharsContainer" />
+    <orderEntry type="module" module-name="Characteristics" />
+    <orderEntry type="module" module-name="JSONOutput" />
+    <orderEntry type="module" module-name="GraphOutput" />
+    <orderEntry type="library" name="Maven: org.knowm.xchart:xchart:3.5.2" level="project" />
+    <orderEntry type="library" name="Maven: de.erichseifert.vectorgraphics2d:VectorGraphics2D:0.13" level="project" />
   </component>
 </module>

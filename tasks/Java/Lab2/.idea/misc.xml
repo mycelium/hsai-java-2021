@@ -11,6 +11,7 @@
         <option value="$PROJECT_DIR$/AbstractReader/pom.xml" />
         <option value="$PROJECT_DIR$/IO/Input/CSVReader/pom.xml" />
         <option value="$PROJECT_DIR$/IO/pom.xml" />
+        <option value="$PROJECT_DIR$/MainLogic/pom.xml" />
       </set>
     </option>
   </component>
