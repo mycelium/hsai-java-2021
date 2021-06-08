@@ -11,7 +11,7 @@ public class DBReader {
     private final String fileName;
     private final ArrayList<Sample> variables;
 
-    Logger logger = LoggerFactory.getLogger(DBReader.class);
+    private Logger logger = LoggerFactory.getLogger(DBReader.class);
 
     /**
      * Reads CSV data from specified file. Data is stored as {@link Sample} list.
@@ -43,6 +43,9 @@ public class DBReader {
                 }
                 variables.add(new Sample(names.get(i), valuesList));
             }
+            statement.close();
+            connection.close();
+            logger.info("File " + fileName + " has been read successfully");
         } catch (ClassNotFoundException | SQLException e) {
             logger.error(e.getMessage());
             throw e;

@@ -17,7 +17,7 @@ public class CSVReader {
     private final String fileName;
     private final ArrayList<Sample> variables;
 
-    Logger logger = LoggerFactory.getLogger(CSVReader.class);
+    private Logger logger = LoggerFactory.getLogger(CSVReader.class);
 
     /**
      * Reads CSV data from specified file. Data is stored as {@link Sample} list.
@@ -47,7 +47,7 @@ public class CSVReader {
             for(int j = 0; j < rows.size(); j++) {
                 variables.add(new Sample(names.get(j), rows.get(j)));
             }
-            logger.info("File " + fileName + " was read successfully");
+            logger.info("File " + fileName + " has been read successfully");
         } catch (IOException | NullPointerException e) {
             logger.error(e.getMessage());
             throw e;
