@@ -2,10 +2,63 @@ package ru.spbstu.telematics.java.hsai_java_lab.statistics;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+
+import ru.spbstu.telematics.java.hsai_java_lab.statistics.data.SampleStatisticsData;
+import ru.spbstu.telematics.java.hsai_java_lab.value.RandomValueSample;
 
 public class SampleStatistics {
     /**
-     * Calculates the nean value of the sample
+     * Creates a map of sample statistic name and its value
+     * 
+     * @param sample Array of floating point values
+     * @return Map of sample statistic name and its value
+     * @throws NullPointerException if {@code sample} is {@code null}
+     * @throws IllegalArgumentException if {@code sample} is empty
+     */
+    private static HashMap<String, Object> getSampleStatistics(ArrayList<Double> sample) {
+        if (sample == null) {
+            throw new NullPointerException("Smaple is null");
+        }
+
+        if (sample.isEmpty()) {
+            throw new IllegalArgumentException("Sample is empty");
+        }
+
+        HashMap<String, Object> statistics = new HashMap<String, Object>();
+        statistics.put("mean", mean(sample));
+        statistics.put("median", median(sample));
+        statistics.put("min", min(sample));
+        statistics.put("max", max(sample));
+
+        return statistics;
+    }
+
+    /**
+     * Creates an array of samples statistic data
+     * 
+     * @param samples Array of random value samples
+     * @return Array of samples statistic data
+     * @throws NullPointerException if {@code samples} is {@code null}
+     */
+    public static ArrayList<SampleStatisticsData> getStatistics(ArrayList<RandomValueSample> samples) {
+        if (samples == null) {
+            throw new NullPointerException("Samples array is null");
+        }
+
+        ArrayList<SampleStatisticsData> samplesData = new ArrayList<SampleStatisticsData>();
+
+        for (RandomValueSample s : samples) {
+            SampleStatisticsData newSampleData = new SampleStatisticsData(s.getName());
+            newSampleData.addAllStatistics(getSampleStatistics(s.getSample()));
+            samplesData.add(newSampleData);
+        }
+
+        return samplesData;
+    }
+
+    /**
+     * Calculates the mean value of the sample
      * 
      * @param sample Array of floating point values
      * @return Mean value of the sample
