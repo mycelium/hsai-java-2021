@@ -9,14 +9,7 @@ public class AutoSample<T> extends ArrayList<T> {
     private String name;
     private Distributed<T> distribution;
 
-    public AutoSample(int initialCapacity, String name, Distributed<T> distribution) {
-        super(initialCapacity);
-        generate(initialCapacity);
-        this.name = name;
-        this.distribution = distribution;
-    }
-
-    public AutoSample(String name, Distributed<T> distribution) {
+    AutoSample(String name, Distributed<T> distribution) {
         this.name = name;
         this.distribution = distribution;
     }
