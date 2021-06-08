@@ -1,5 +1,7 @@
 package ru.spbstu.telematics.java.hsai_java_lab.value;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.spbstu.telematics.java.hsai_java_lab.distribution.Distribution;
 import ru.spbstu.telematics.java.hsai_java_lab.distribution.Distribution.DistributionType;
 import ru.spbstu.telematics.java.hsai_java_lab.distribution.NormalDistribution;
@@ -11,6 +13,8 @@ public class RandomValue {
     private DistributionType type;
     private Distribution distribution;
 
+    private static final Logger logger = LoggerFactory.getLogger(RandomValue.class);
+
     /**
      * Creates the instance of the random value
      * with the continuous uniform distribution
@@ -21,6 +25,7 @@ public class RandomValue {
      * @return Instance of the random value
      */
     static public RandomValue uniformDistribution(String name, double a, double b) {
+        logger.info("Random Value with Uniform Distribution created");
         return new RandomValue(name, DistributionType.UNIFORM, new UniformDistribution(a, b));
     }
 
@@ -34,6 +39,7 @@ public class RandomValue {
      * @return Instance of the random value
      */
     static public RandomValue normalDistribution(String name, double mu, double sigma) {
+        logger.info("Random Value with Normal Distribution created");
         return new RandomValue(name, DistributionType.NORMAL, new NormalDistribution(mu, sigma));
     }
 
@@ -47,6 +53,7 @@ public class RandomValue {
      */
     static public RandomValue poissonDistribution(String name, int lambda) {
         int checkedLambda = (lambda < 0) ? 0 : lambda;
+        logger.info("Random Value with Poisson Distribution created");
         return new RandomValue(name, DistributionType.POISSON, new PoissonDistribution(checkedLambda));
     }
 

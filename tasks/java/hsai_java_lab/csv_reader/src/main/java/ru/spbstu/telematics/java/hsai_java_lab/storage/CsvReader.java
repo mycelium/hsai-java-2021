@@ -7,11 +7,15 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.spbstu.telematics.java.hsai_java_lab.value.RandomValueSample;
 
 public class CsvReader {
     private File cvsFile;
     private ArrayList<RandomValueSample> samples;
+
+    private static final Logger logger = LoggerFactory.getLogger(CsvReader.class);
 
     /**
      * Creates new instance of the CVS reader class.
@@ -23,14 +27,17 @@ public class CsvReader {
      */
     public CsvReader(String path) throws FileNotFoundException {
         if (path == null) {
+            logger.error("File path is null");
             throw new NullPointerException("File path is null");
         }
 
         cvsFile = new File(path);
 
         if (!cvsFile.exists()) {
+            logger.error("CSV file not found");
             throw new FileNotFoundException("File " + path + " not found");
         }
+        logger.info("CSV file configured");
     }
 
     /**
@@ -49,6 +56,7 @@ public class CsvReader {
             finReader = new BufferedReader(new FileReader(cvsFile));
         }
         catch (FileNotFoundException e) {
+            logger.error("CSV file not found");
             throw e;
         }
 
@@ -59,14 +67,17 @@ public class CsvReader {
             
             if ((valueNamesString == null) || (valueNamesString.isEmpty())) {
                 finReader.close();
+                logger.error("CSV header is incorrect");
                 throw new IllegalArgumentException("CSV data is incorrect");
             }
 
             valueNames = valueNamesString.split(",");
         }
         catch (IOException e) {
+            logger.error("Failed to read CSV file: " + e.getMessage());
             throw e;
         }
+        logger.info("CSV header is pulled from file");
 
         /* Create array of samples */
         int valuesNumber = valueNames.length;
@@ -85,6 +96,7 @@ public class CsvReader {
 
                 if (valuesString.length != valuesNumber) {
                     finReader.close();
+                    logger.error("CSV data is incorrect: Inconsistent number of columns");
                     throw new IllegalArgumentException("CSV data is incorrect: Inconsistent number of columns");
                 }
 
@@ -95,14 +107,17 @@ public class CsvReader {
         }
         catch (IOException e) {
             finReader.close();
+            logger.error("Failed to read CSV file: " + e.getMessage());
             throw e;
         }
         catch (NumberFormatException e) {
             finReader.close();
+            logger.error("Incorrect format of data");
             throw e;
         }
 
         finReader.close();
+        logger.info("Data is pulled from CSV file");
         
         return samples;
     }

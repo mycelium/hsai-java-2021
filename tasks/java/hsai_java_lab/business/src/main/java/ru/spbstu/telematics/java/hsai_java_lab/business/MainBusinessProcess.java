@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.spbstu.telematics.java.hsai_java_lab.statistics.SampleNormality;
 import ru.spbstu.telematics.java.hsai_java_lab.statistics.SampleStatistics;
 import ru.spbstu.telematics.java.hsai_java_lab.statistics.data.SampleStatisticsData;
@@ -24,12 +26,16 @@ public class MainBusinessProcess {
     private ArrayList<SampleStatisticsData> samplesStatistics;
     private ArrayList<SampleStatisticsData> samplesNormality;
 
+    private static final Logger logger = LoggerFactory.getLogger(MainBusinessProcess.class);
+
     public MainBusinessProcess(RandomValueTable table) {
         if (table == null) {
+            logger.error("Table is null");
             throw new NullPointerException("Table is null");
         }
 
         this.table = table;
+        logger.info("Main process is ready to execute");
     }
 
     public int runProcess() {
@@ -39,9 +45,10 @@ public class MainBusinessProcess {
         }
         catch (StorageException e) {
             StorageType type = e.getStorageType();
-            //TODO логгирование
+            logger.error("Failed to store table");
             return 1;
         }
+        logger.info("Table is stores successfully");
 
         /* Read random values samples from storage file */
         try {
@@ -59,25 +66,26 @@ public class MainBusinessProcess {
             }
         }
         catch (FileNotFoundException e) {
-            //TODO логгирование
+            logger.error("Failed to pull samples from file: " + e.getMessage());
             return 1;
         }
         catch (IOException e) {
-            //TODO логгирование
+            logger.error("Failed to pull samples from file: " + e.getMessage());
             return 1;
         }
         catch (NumberFormatException e) {
-            //TODO логгирование
+            logger.error("Failed to pull samples from file: Invalid number format" + e.getMessage());
             return 1;
         }
         catch (IllegalArgumentException e) {
-            //TODO логгирование
+            logger.error("Pulling samples from DB failed");
             return 1;
         }
         catch (SQLException e) {
-            //TODO логгирование
+            logger.error("Pulling samples from DB failed");
             return 1;
         }
+        logger.info("Samples pulled from storage successfully");
 
         /* Calculate samples statistics */
         samplesStatistics = SampleStatistics.getStatistics(samples);
@@ -93,6 +101,7 @@ public class MainBusinessProcess {
                 }
             }
         }
+        logger.info("Samples statistics calculated successfully");
 
         /* Write samples statistics to the JSON */
         SampleStatisticsPresentation presentation = new SampleStatisticsPresentation(samplesStatistics);
@@ -100,14 +109,17 @@ public class MainBusinessProcess {
             presentation.writeToJson(table.getName());
         }
         catch (IOException e) {
-            //TODO логгирование
+            logger.error("Failed to write statistics to JSON file");
             return 1;
         }
+        logger.info("Samples statistics are written to JSON file successfully");
         
         /* Plot the samples data */
         SamplePlot plot = new SamplePlot(samples);
         plot.plotSamples();
+        logger.info("Samples plotted");
 
+        logger.info("Main process finished");
         return 0;
     }
 }

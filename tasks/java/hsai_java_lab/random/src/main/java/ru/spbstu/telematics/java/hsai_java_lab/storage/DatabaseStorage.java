@@ -11,6 +11,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.spbstu.telematics.java.hsai_java_lab.value.RandomValue;
 
 public class DatabaseStorage implements Storage {
@@ -19,14 +21,18 @@ public class DatabaseStorage implements Storage {
 
     private final String sqlTableName = "random_values_table";
     private final String propertyPath = "../resources/storage.properties";
+
+    private static final Logger logger = LoggerFactory.getLogger(DatabaseStorage.class);
     
     @Override
     public String saveTable(ArrayList<RandomValue> table, String name, int rowNumber) throws StorageException {
         if (table == null) {
+            logger.error("Random Value Table is null");
             throw new NullPointerException("Random Value Table is null");
         }
 
         if (rowNumber < 0) {
+            logger.error("Table row number is less then 0");
             throw new IllegalArgumentException("Table row number is less then 0");
         }
         
@@ -42,16 +48,21 @@ public class DatabaseStorage implements Storage {
             filePath = storageProp.getProperty("db.folder") + "/" + tableName + ".db";
         }
         catch (IOException e) {
+            logger.error("Failed to configure DB file path" + e.getMessage());
             throw new StorageException("Failed to open Storage Properties file: " + e.getMessage(), StorageType.DATABASE);
         }
+
+        logger.info("CVS file path configured");
 
         /* Connect to the DB */
         try {
             connection = DriverManager.getConnection("jdbc:sqlite:" + filePath);
         }
         catch (SQLException e) {
+            logger.error("Failed to connect to DB");
             throw new StorageException("Failed to connect do DB: " + e.getMessage(), StorageType.DATABASE);
         }
+        logger.info("Connection to DB established");
 
         /* Create table in the DB */
         try {
@@ -66,8 +77,11 @@ public class DatabaseStorage implements Storage {
             );
         }
         catch (SQLException e) {
+            logger.error("Failed to create DB table");
             throw new StorageException("Failed to create table in DB: " + e.getMessage(), StorageType.DATABASE);
         }
+
+        logger.info("DB table created");
         
         /* Populate DB with data */
         try {
@@ -93,10 +107,12 @@ public class DatabaseStorage implements Storage {
             connection.close();
         }
         catch (SQLException e) {
+            logger.error("Failed to insert values into DB table");
             throw new StorageException("Failed to insert values into DB: " + e.getMessage(), StorageType.DATABASE);
         }
 
         filePath = new File(filePath).getAbsolutePath();
+        logger.info("Table is stored to the DB file " + filePath);
         
         return filePath;
     }

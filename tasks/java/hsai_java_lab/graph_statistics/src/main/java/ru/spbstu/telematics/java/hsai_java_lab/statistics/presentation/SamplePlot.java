@@ -13,20 +13,26 @@ import org.knowm.xchart.CategoryChartBuilder;
 import org.knowm.xchart.CategorySeries.CategorySeriesRenderStyle;
 import org.knowm.xchart.Histogram;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.spbstu.telematics.java.hsai_java_lab.value.RandomValueSample;
 
 public class SamplePlot {
     private final String propertyPath = "../resources/plot.properties";
+
+    private static final Logger logger = LoggerFactory.getLogger(SamplePlot.class);
 
     String plotFolderPath;
     ArrayList<RandomValueSample> samples;
 
     public SamplePlot(ArrayList<RandomValueSample> samples) {
         if (samples == null) {
+            logger.error("Samples array is null");
             throw new NullPointerException("Samples array is null");
         }
 
         if (samples.isEmpty()) {
+            logger.error("Samples array is empty");
             throw new IllegalArgumentException("Samples array is empty");
         }
 
@@ -39,8 +45,9 @@ public class SamplePlot {
         }
         catch (IOException e) {
             plotFolderPath = ".";
-            //TODO Добавить логер
+            logger.warn("Failed to set plot output folder. PLot output folder is set to default");
         }
+        logger.info("Plot presentation is configured");
     }
 
     public void plotSamples() {
@@ -52,7 +59,8 @@ public class SamplePlot {
                 plotData(s, plotFolderPath + "/" + fileName + "_data");
             }
             catch (IOException e) {
-                continue; //TODO Добавить логер
+                logger.warn("Filed to plot sample " + s.getName());
+                continue;
             } 
         }
     }
@@ -73,8 +81,10 @@ public class SamplePlot {
             BitmapEncoder.saveBitmapWithDPI(chart, filePath, BitmapFormat.PNG, 300);
         }
         catch (IOException e) {
+            logger.error("Failed to write histogram of sample " + sample.getName() + "to PNG file");
             throw e;
         }
+        logger.info("Sample " + sample.getName() + "histogram is plotted");
     }
 
     private void plotData(RandomValueSample sample, String filePath) throws IOException {
@@ -95,7 +105,9 @@ public class SamplePlot {
             BitmapEncoder.saveBitmapWithDPI(chart, filePath, BitmapFormat.PNG, 300);
         }
         catch (IOException e) {
+            logger.error("Failed to write data plot of sample " + sample.getName() + "to PNG file");
             throw e;
         }
+        logger.info("Sample " + sample.getName() + "data is plotted");
     }
 }

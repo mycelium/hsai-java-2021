@@ -9,6 +9,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.spbstu.telematics.java.hsai_java_lab.value.RandomValueSample;
 
 public class DatabaseReader {
@@ -20,6 +22,8 @@ public class DatabaseReader {
     private File dbFile;
     private ArrayList<RandomValueSample> samples;
 
+    private static final Logger logger = LoggerFactory.getLogger(DatabaseReader.class);
+
     /**
      * Creates new instance of the database reader class.
      * By this time database must exist and contain correct data.
@@ -30,14 +34,17 @@ public class DatabaseReader {
      */
     public DatabaseReader(String path) throws FileNotFoundException {
         if (path == null) {
+            logger.error("DB file is null");
             throw new NullPointerException("File path is null");
         }
 
         dbFile = new File(path);
 
         if (!dbFile.exists()) {
+            logger.error("DB file not found");
             throw new FileNotFoundException("File " + path + " not found");
         }
+        logger.info("DB file configured");
     }
 
     /**
@@ -55,8 +62,10 @@ public class DatabaseReader {
             statement = connection.createStatement();
         }
         catch (SQLException e) {
+            logger.error("Failed to connect to DB");
             throw e;
         }
+        logger.info("Connection to DB established");
 
         /* Collect information about values' names */
         try {
@@ -64,6 +73,7 @@ public class DatabaseReader {
                                             "FROM " + sqlTableName + ";");
         }
         catch (SQLException e) {
+            logger.error("Failed to execute DB SELECT");
             throw e;
         }
 
@@ -73,6 +83,7 @@ public class DatabaseReader {
         }
 
         if (valueNames.isEmpty()) {
+            logger.error("Database table is empty");
             throw new IllegalArgumentException("Database table is empty");
         }
 
@@ -94,6 +105,7 @@ public class DatabaseReader {
                                                 " WHERE name = '" + valueName + "';");
             }
             catch (SQLException e) {
+                logger.error("Failed to execute DB SELECT");
                 throw e;
             }
 
@@ -101,10 +113,12 @@ public class DatabaseReader {
                 samples.get(i).addValue(result.getDouble("value"));
             }
         }
+        logger.info("Table is pulled from DB");
 
         result.close();
         statement.close();
         connection.close();
+        logger.info("Connection to DB is closed");
 
         return samples;
     }

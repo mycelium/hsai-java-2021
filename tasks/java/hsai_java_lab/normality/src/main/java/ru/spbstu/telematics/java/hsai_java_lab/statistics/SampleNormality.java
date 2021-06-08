@@ -9,6 +9,8 @@ import org.apache.commons.math3.distribution.NormalDistribution;
 import org.apache.commons.math3.exception.OutOfRangeException;
 import org.apache.commons.math3.stat.Frequency;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.spbstu.telematics.java.hsai_java_lab.statistics.data.SampleStatisticsData;
 import ru.spbstu.telematics.java.hsai_java_lab.value.RandomValueSample;
 
@@ -16,20 +18,26 @@ public class SampleNormality {
     private double alpha;
     private static final int minSampleSize = 50;
 
+    private static final Logger logger = LoggerFactory.getLogger(SampleNormality.class);
+
     public SampleNormality(double alpha) {
         if ((alpha < 0.) || (alpha > 1.)) {
+            logger.error("Normality parameter is out of range");
             throw new OutOfRangeException(alpha, 0., 1.);
         }
 
         this.alpha = alpha;
+        logger.info("Instance created with the normality parameter alpha = " + alpha);
     }
 
     public void setAlpha(double alpha) {
         if ((alpha < 0.) || (alpha > 1.)) {
+            logger.error("Normality parameter is out of range");
             throw new OutOfRangeException(alpha, 0., 1.);
         }
 
         this.alpha = alpha;
+        logger.info("New normality parameter is set");
     }
 
     /**
@@ -41,6 +49,7 @@ public class SampleNormality {
      */
     public ArrayList<SampleStatisticsData> getStatistics(ArrayList<RandomValueSample> samples) {
         if (samples == null) {
+            logger.error("Samples array is null");
             throw new NullPointerException("Samples array is null");
         }
 
@@ -58,8 +67,10 @@ public class SampleNormality {
             }
             
             samplesData.add(newSampleData);
+            logger.info("Sample " + s.getName() + " normality is calculated");
         }
 
+        logger.info("All samples normality are calculated");
         return samplesData;
     }
     

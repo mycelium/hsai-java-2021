@@ -11,6 +11,8 @@ import java.util.Properties;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.spbstu.telematics.java.hsai_java_lab.statistics.data.SampleStatisticsData;
 
 public class SampleStatisticsPresentation {
@@ -18,9 +20,12 @@ public class SampleStatisticsPresentation {
 
     String filePath;
     ArrayList<SampleStatisticsData> statistics;
+
+    private static final Logger logger = LoggerFactory.getLogger(SampleStatisticsPresentation.class);
     
     public SampleStatisticsPresentation(ArrayList<SampleStatisticsData> statistics) {
         if (statistics == null) {
+            logger.error("Statistics Data array is null");
             throw new NullPointerException("Statistics is null");
         }
 
@@ -33,8 +38,9 @@ public class SampleStatisticsPresentation {
         }
         catch (IOException e) {
             filePath = ".";
-            //TODO Добавить логгер
+            logger.warn("Failed to set JSON output folder. JSON output folder is set to default");
         }
+        logger.info("JSON presentation is configured");
     }
 
     public void writeToJson(String fileName) throws IOException{
@@ -67,8 +73,9 @@ public class SampleStatisticsPresentation {
             foutWriter.write(samplesArray.toJSONString());
         }
         catch (IOException e) {
+            logger.error("Failed to write sample statistics to the JSON file " + e.getMessage());
             throw e;
-        } 
-
+        }
+        logger.info("Samples statistics data is writted to JSON file " + filePath);
     }
 }

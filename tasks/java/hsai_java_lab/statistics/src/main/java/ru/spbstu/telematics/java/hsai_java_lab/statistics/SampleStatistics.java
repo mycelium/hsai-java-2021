@@ -4,10 +4,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.spbstu.telematics.java.hsai_java_lab.statistics.data.SampleStatisticsData;
+import ru.spbstu.telematics.java.hsai_java_lab.storage.CsvStorage;
 import ru.spbstu.telematics.java.hsai_java_lab.value.RandomValueSample;
 
 public class SampleStatistics {
+    private static final Logger logger = LoggerFactory.getLogger(SampleStatistics.class);
+
     /**
      * Creates an array of samples statistic data
      * 
@@ -17,6 +22,7 @@ public class SampleStatistics {
      */
     public static ArrayList<SampleStatisticsData> getStatistics(ArrayList<RandomValueSample> samples) {
         if (samples == null) {
+            logger.error("Samples array is null");
             throw new NullPointerException("Samples array is null");
         }
 
@@ -28,6 +34,7 @@ public class SampleStatistics {
             samplesData.add(newSampleData);
         }
 
+        logger.info("Sample statistics collected");
         return samplesData;
     }
 
