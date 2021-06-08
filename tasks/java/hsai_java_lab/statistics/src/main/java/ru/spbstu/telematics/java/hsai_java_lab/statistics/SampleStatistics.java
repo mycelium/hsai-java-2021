@@ -110,7 +110,6 @@ public class SampleStatistics {
 
         ArrayList<Double> orderedSample = new ArrayList<Double>(sample);
         Collections.sort(orderedSample);
-        Collections.sort(sample);
 
         double median;
 

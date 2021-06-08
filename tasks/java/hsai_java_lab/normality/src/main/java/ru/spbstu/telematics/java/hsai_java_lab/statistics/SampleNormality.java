@@ -48,14 +48,13 @@ public class SampleNormality {
 
         for (RandomValueSample s : samples) {
             SampleStatisticsData newSampleData = new SampleStatisticsData(s.getName());
-            HashMap<String, Object> statistics = new HashMap<String, Object>();
 
             try {
                 Boolean normality = isSampleNormal(s.getSample());
-                statistics.put("Normality", normality);
+                newSampleData.addStatistic("Normality", normality);
             }
             catch (IllegalArgumentException e) {
-                statistics.put("Normality", "Undefined");
+                newSampleData.addStatistic("Normality", "Undefined");
             }
             
             samplesData.add(newSampleData);
@@ -86,8 +85,6 @@ public class SampleNormality {
             throw new IllegalArgumentException("Sample is too small to investigate");
         }
 
-        Collections.sort(sample);
-
         /* Calculate parameters */
         int n = sample.size();
         double mu = SampleStatistics.mean(sample);
@@ -104,27 +101,30 @@ public class SampleNormality {
          * with first interval (-infty, a_0] and last interval [a_k-1, infty)
         */
         ArrayList<Double> intervalLimits = new ArrayList<Double>();
-        double sampleInterval = sample.get(sample.size() - 1) - sample.get(0); // max - min
+        double min = Collections.min(sample);
+        double max = Collections.max(sample);
+        double sampleInterval = max - min; // max - min
         double intervaIncrement = sampleInterval / (double) k;
-        double intervaLowLimit = sample.get(0) + intervaIncrement;
+        double intervaHighLimit = min + intervaIncrement;
 
         for (int i = 0; i < k - 1; i++) {
-            intervalLimits.add(intervaLowLimit);
-            intervaLowLimit += intervaIncrement;
+            intervalLimits.add(intervaHighLimit);
+            intervaHighLimit += intervaIncrement;
         }
 
         /* Calculate theoretical frequencies */
         NormalDistribution normal = new NormalDistribution(mu, sigma);
-        ArrayList<Double> pTheoretcal = new ArrayList<Double>();
-        pTheoretcal.add(normal.cumulativeProbability(intervalLimits.get(0))); // (-inty, a_0]
+        ArrayList<Double> pTheoretical = new ArrayList<Double>();
+        double pTheorPrev = 0;
+        double pTheorNext;
 
-        for (int i = 1; i < k - 1; i++) {
-            double p_i = normal.cumulativeProbability(intervalLimits.get(i)) - 
-                         normal.cumulativeProbability(intervalLimits.get(i - 1));
-            pTheoretcal.add(p_i);
+        for (int i = 0; i < k - 1 ; i++) {
+            pTheorNext = normal.cumulativeProbability(intervalLimits.get(i));
+            pTheoretical.add(pTheorNext - pTheorPrev);
+            pTheorPrev = pTheorNext;
         }
         
-        pTheoretcal.add(1. - normal.cumulativeProbability(intervalLimits.get(k - 2))); // (a_k-1, infty)
+        pTheoretical.add(1. - normal.cumulativeProbability(intervalLimits.get(k - 2))); // (a_k-1, infty)
  
         /* Calculate sample frequencies */
         Frequency freq = new Frequency();
@@ -133,12 +133,14 @@ public class SampleNormality {
         }
 
         ArrayList<Long> pEmpirical = new ArrayList<Long>();
-        pEmpirical.add(freq.getCumFreq(intervalLimits.get(0))); // (-inty, a_0]
 
-        for (int i = 1; i < k - 1; i++) {
-            long p_i = freq.getCumFreq(intervalLimits.get(i)) -
-            freq.getCumFreq(intervalLimits.get(i - 1));
-            pEmpirical.add(p_i);
+        long pEmpirPrev = 0;
+        long pEmpirNext;
+
+        for (int i = 0; i < k - 1; i++) {
+            pEmpirNext = freq.getCumFreq(intervalLimits.get(i));
+            pEmpirical.add(pEmpirNext - pEmpirPrev);
+            pEmpirPrev = pEmpirNext;
         }
 
         pEmpirical.add(n - freq.getCumFreq(intervalLimits.get(k - 2))); // (a_k-1, infty)
@@ -149,8 +151,8 @@ public class SampleNormality {
         double chi2_q_sample = 0.;
 
         for (int i = 0; i < k; i++) {
-            chi2_q_sample += Math.pow(pEmpirical.get(i) - (double) n * pTheoretcal.get(i), 2.) /
-                             (double) n * pTheoretcal.get(i);
+            chi2_q_sample += Math.pow(pEmpirical.get(i) - (double) n * pTheoretical.get(i), 2.) /
+                             (double) n * pTheoretical.get(i);
         }
         
         return chi2_q_sample < chi2_q_theor;

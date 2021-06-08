@@ -89,6 +89,7 @@ public class MainBusinessProcess {
             for (SampleStatisticsData s2 : samplesNormality) {
                 if (s1.getName().equals(s2.getName())) {
                     s1.addAllStatistics(s2.getStatistics());
+                    break;
                 }
             }
         }

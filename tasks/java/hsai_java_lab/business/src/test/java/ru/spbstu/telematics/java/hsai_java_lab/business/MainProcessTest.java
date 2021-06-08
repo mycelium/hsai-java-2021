@@ -12,9 +12,10 @@ import ru.spbstu.telematics.java.hsai_java_lab.value.RandomValue;
 import ru.spbstu.telematics.java.hsai_java_lab.value.RandomValueTable;
 
 public class MainProcessTest {
-    RandomValueTable csvTable;
-    RandomValueTable dbTable;
-    MainBusinessProcess process;
+    private RandomValueTable csvTable;
+    private RandomValueTable dbTable;
+    private MainBusinessProcess process;
+    private final int sampleSize = 66000;
 
     @Before
     public void setUp() {
@@ -38,8 +39,8 @@ public class MainProcessTest {
         values2.add(RandomValue.uniformDistribution("Uniform 3", -2., 2.));
         values2.add(RandomValue.uniformDistribution("Uniform 4", -5., 10.));
 
-        csvTable = new RandomValueTable(values1, "Table CSV", 2000, StorageType.CSV);
-        dbTable = new RandomValueTable(values2, "Table DB", 2000, StorageType.DATABASE);
+        csvTable = new RandomValueTable(values1, "Table CSV", sampleSize, StorageType.CSV);
+        dbTable = new RandomValueTable(values2, "Table DB", sampleSize, StorageType.DATABASE);
     }
 
     @Test

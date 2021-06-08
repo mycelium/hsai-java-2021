@@ -48,7 +48,7 @@ public class CsvStorage implements Storage {
         /* Open/Create File to write data */
         String filePath;
 
-        try (InputStream istream = new FileInputStream("../resources/storage.properties")) {
+        try (InputStream istream = new FileInputStream(propertyPath)) {
             Properties storageProp = new Properties();
             storageProp.load(istream);
             filePath = storageProp.getProperty("csv.folder") + "/" + tableName + ".csv";
