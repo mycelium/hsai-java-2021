@@ -34,5 +34,4 @@ public class PoissonTest {
         new Poisson(variance);
     }
 
-
 }
