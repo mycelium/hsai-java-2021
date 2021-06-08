@@ -2,24 +2,33 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="RandomData" />
-        <module name="DBReader" />
         <module name="CheckNormal" />
-        <module name="CSVReader" />
+        <module name="DBReader" />
         <module name="Characteristics" />
+        <module name="CSVReader" />
+        <module name="MainLogic" />
+        <module name="JSONOutput" />
+        <module name="GraphOutput" />
+        <module name="Common" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Characteristics" target="1.5" />
-      <module name="CheckNormal" target="1.5" />
-      <module name="CSVReader" target="1.5" />
-      <module name="DBReader" target="1.5" />
-      <module name="Lab2" target="1.5" />
-      <module name="RandomData" target="1.5" />
+      <module name="Characteristics" target="8" />
+      <module name="CheckNormal" target="8" />
+      <module name="Common" target="8" />
+      <module name="CSVReader" target="8" />
+      <module name="DBReader" target="8" />
+      <module name="GraphOutput" target="8" />
+      <module name="JSONOutput" target="8" />
+      <module name="Lab2" target="8" />
+      <module name="MainLogic" target="8" />
+      <module name="RandomData" target="8" />
     </bytecodeTargetLevel>
   </component>
 </project>

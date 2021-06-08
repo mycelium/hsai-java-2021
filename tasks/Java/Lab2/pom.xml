@@ -1,19 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-
+    
   <modelVersion>4.0.0</modelVersion>
+  <build>
+  <plugins>
+    <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-compiler-plugin</artifactId>
+      <configuration>
+        <source>8</source>
+        <target>8</target>
+      </configuration>
+    </plugin>
+  </plugins>
+</build>
   <groupId>ru.spbstu.telematics.java</groupId>
   <artifactId>Lab2</artifactId>
   <packaging>pom</packaging>
-
+    
   <version>1.0-SNAPSHOT</version>
-
+    
   <name>Lab2</name>
-
+    
   <url>http://maven.apache.org</url>
-
+    
   <modules>
-    <module>CSVReader</module>
     <module>DBReader</module>
     <module>CheckNormal</module>
     <module>RandomData</module>
@@ -21,8 +32,10 @@
     <module>GraphOutput</module>
     <module>JSONOutput</module>
     <module>MainLogic</module>
+    <module>Common</module>
+    <module>CSVReader</module>
   </modules>
-
+    
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -30,6 +43,22 @@
       <version>4.12</version>
       <scope>test</scope>
     </dependency>
-  </dependencies>
 
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>1.7.30</version>
+    </dependency>
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>1.2.3</version>
+    </dependency>
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-core</artifactId>
+      <version>1.2.3</version>
+    </dependency>
+  </dependencies>
+  
 </project>

@@ -6,6 +6,13 @@
         <option value="$PROJECT_DIR$/pom.xml" />
       </list>
     </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/AbstractReader/pom.xml" />
+        <option value="$PROJECT_DIR$/IO/Input/CSVReader/pom.xml" />
+        <option value="$PROJECT_DIR$/IO/pom.xml" />
+      </set>
+    </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_14" project-jdk-name="14" project-jdk-type="JavaSDK" />
 </project>

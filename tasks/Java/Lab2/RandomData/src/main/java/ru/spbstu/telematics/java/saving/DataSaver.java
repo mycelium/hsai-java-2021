@@ -41,7 +41,7 @@ public class DataSaver {
         for (int i = 0; i < data.size() - 1; i++) {
             writer.write(data.get(i) + ",");
         }
-        writer.write(data.get(data.size() - 1) + "\n");
+        writer.write(data.get(data.size() - 1) + "\r\n");
     }
 
     /**
@@ -77,7 +77,7 @@ public class DataSaver {
      * The table will contain (variables amount * size)+1 rows (one header row).
      * @param data random data that may contain variables that should be saved
      * @param size amount of values for each variable
-     * @param fileName name of .csv file (may be without extension)
+     * @param fileName name of .db file (may be without extension)
      * @return path to a file
      * */
     public static String saveDB (RandomData data, int size, String fileName)
