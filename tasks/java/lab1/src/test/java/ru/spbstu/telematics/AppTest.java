@@ -16,7 +16,7 @@ public class AppTest {
     final String DB_FILE = DIR + "/" + "outDB.db";
 
     @Test
-    void SystemTestCSV() throws IOException {
+    public void SystemTestCSV() throws IOException {
         Table table = new Table("Table1");
         table
                 .add(AutoSamplesFactory.getNormal("Normal 1, -10", 1., -10.))
@@ -28,7 +28,7 @@ public class AppTest {
     }
 
     @Test
-    void SystemTestDB() throws IOException, SQLException {
+    public void SystemTestDB() throws IOException, SQLException {
         Table table = new Table("Table1");
         table
                 .add(AutoSamplesFactory.getNormal("Normal", 1., -10.))
