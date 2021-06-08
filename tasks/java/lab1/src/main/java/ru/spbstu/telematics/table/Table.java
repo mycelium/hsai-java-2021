@@ -31,22 +31,24 @@ public class Table {
     /**
      * @return Лист строк, где каждая строка это набор случайных значений, по 1-му из каждого распределения
      */
-    public List<String[]> getTableValues() {
-        List<String[]> lines = new ArrayList<>(getNumberOfValues());
+    public List<List<Object>> getTableValues() {
+        List<List<Object>> lines = new ArrayList<>(getNumberOfValues());
         for (int i = 0; i < getNumberOfValues(); i++) {
-            String[] line = new String[table.size()];
+            List<Object> line = new ArrayList<>(table.size());
             for (int j = 0; j < table.size(); j++) {
-                line[j] = table.get(j).get(i).toString();
+                line.add(table.get(j).get(i));
             }
-            lines.set(i, line);
+            lines.add(line);
         }
         return lines;
     }
 
-    public String[] getSamplesName() {
-        return (String[]) table.stream()
-                .map(AutoSample::getName)
-                .toArray();
+    public List<String> getSamplesName() {
+        List<String> samplesName = new ArrayList<>(table.size());
+        for (int i = 0; i < table.size(); i++) {
+            samplesName.add(table.get(i).getName());
+        }
+        return samplesName;
     }
 
     public String getTableName() {
