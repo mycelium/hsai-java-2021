@@ -1,0 +1,9 @@
+{
+  "filename": "poisson100k",
+  "dataSize": 100000,
+  "min": 0.0,
+  "max": 15.0,
+  "median": 4.0,
+  "average": 4.00511,
+  "normality": false
+}

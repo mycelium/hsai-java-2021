@@ -1,0 +1,9 @@
+{
+  "filename": "uniform100k",
+  "dataSize": 100000,
+  "min": 2.5046387700511374E-5,
+  "max": 100.99844216657245,
+  "median": 50.28374680677781,
+  "average": 50.403528382222525,
+  "normality": false
+}
