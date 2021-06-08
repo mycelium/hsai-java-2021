@@ -1,5 +1,4 @@
 module random.generator {
-    requires opencsv;
     requires java.sql;
 
     exports ru.spbstu.telematics.samples;
