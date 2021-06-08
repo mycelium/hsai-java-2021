@@ -14,17 +14,17 @@ import org.json.simple.JSONObject;
 import ru.spbstu.telematics.java.hsai_java_lab.statistics.data.SampleStatisticsData;
 
 public class SampleStatisticsPresentation {
-    private final String propertyPath = "src/main/resources/presentation.properties";
+    private final String propertyPath = "../resources/presentation.properties";
 
     String filePath;
-    ArrayList<SampleStatisticsData> samplesData;
+    ArrayList<SampleStatisticsData> statistics;
     
-    public SampleStatisticsPresentation(ArrayList<SampleStatisticsData> statistics)
-        throws IOException
-    {
+    public SampleStatisticsPresentation(ArrayList<SampleStatisticsData> statistics) {
         if (statistics == null) {
             throw new NullPointerException("Statistics is null");
         }
+
+        this.statistics = statistics;
 
         try (InputStream istream = new FileInputStream(propertyPath)) {
             Properties storageProp = new Properties();
@@ -32,7 +32,8 @@ public class SampleStatisticsPresentation {
             filePath = storageProp.getProperty("json.folder");
         }
         catch (IOException e) {
-            throw new IOException("Failed to open Presentation Properties file: " + e.getMessage());
+            filePath = ".";
+            //TODO Добавить логгер
         }
     }
 
@@ -46,7 +47,7 @@ public class SampleStatisticsPresentation {
         try (FileWriter foutWriter = new FileWriter(filePath)) {
             JSONArray samplesArray = new JSONArray();
 
-            for (SampleStatisticsData s : samplesData) {
+            for (SampleStatisticsData s : statistics) {
                 JSONObject sampleJson = new JSONObject();
                 JSONObject sampleDataJson = new JSONObject();
                 JSONObject sampleStatisticsJson = new JSONObject();

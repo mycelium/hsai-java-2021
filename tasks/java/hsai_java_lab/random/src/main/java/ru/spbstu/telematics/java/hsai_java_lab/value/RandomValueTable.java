@@ -12,6 +12,7 @@ public class RandomValueTable {
     private String name;
     private ArrayList<RandomValue> table;
     private int rowNumber;
+    private StorageType storageType;
     private Storage storage;
 
     /**
@@ -34,6 +35,7 @@ public class RandomValueTable {
         
         this.name = (name == null) ? "RandomValueTable" : name;
         this.rowNumber = (sampleSize < 0) ? 1 : sampleSize;
+        this.storageType = storageType;
 
         switch (storageType) {
             case CSV:
@@ -44,7 +46,7 @@ public class RandomValueTable {
                 break;
             default:
                 break;
-        }
+        }  
     }
 
     /**
@@ -66,5 +68,23 @@ public class RandomValueTable {
             System.err.println("Failed to save table");
             throw e;
         }
+    }
+
+    /**
+     * Returns the type of storage of the table
+     * 
+     * @return Type of storage of the table
+     */
+    public StorageType getStorageType() {
+        return storageType;
+    }
+
+    /**
+     * Returns the name of the table
+     * 
+     * @return Name of the table
+     */
+    public String getName() {
+        return name;
     }
 }

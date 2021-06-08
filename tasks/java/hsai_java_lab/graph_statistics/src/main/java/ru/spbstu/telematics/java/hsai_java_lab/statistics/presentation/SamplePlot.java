@@ -16,7 +16,7 @@ import org.knowm.xchart.Histogram;
 import ru.spbstu.telematics.java.hsai_java_lab.value.RandomValueSample;
 
 public class SamplePlot {
-    private final String propertyPath = "src/main/resources/plot.properties";
+    private final String propertyPath = "../resources/plot.properties";
 
     String plotFolderPath;
     ArrayList<RandomValueSample> samples;

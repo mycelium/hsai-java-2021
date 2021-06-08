@@ -9,32 +9,6 @@ import ru.spbstu.telematics.java.hsai_java_lab.value.RandomValueSample;
 
 public class SampleStatistics {
     /**
-     * Creates a map of sample statistic name and its value
-     * 
-     * @param sample Array of floating point values
-     * @return Map of sample statistic name and its value
-     * @throws NullPointerException if {@code sample} is {@code null}
-     * @throws IllegalArgumentException if {@code sample} is empty
-     */
-    private static HashMap<String, Object> getSampleStatistics(ArrayList<Double> sample) {
-        if (sample == null) {
-            throw new NullPointerException("Smaple is null");
-        }
-
-        if (sample.isEmpty()) {
-            throw new IllegalArgumentException("Sample is empty");
-        }
-
-        HashMap<String, Object> statistics = new HashMap<String, Object>();
-        statistics.put("mean", mean(sample));
-        statistics.put("median", median(sample));
-        statistics.put("min", min(sample));
-        statistics.put("max", max(sample));
-
-        return statistics;
-    }
-
-    /**
      * Creates an array of samples statistic data
      * 
      * @param samples Array of random value samples
@@ -55,6 +29,37 @@ public class SampleStatistics {
         }
 
         return samplesData;
+    }
+
+    /**
+     * Creates a map of sample statistic name and its value
+     * 
+     * @param sample Array of floating point values
+     * @return Map of sample statistic name and its value
+     * @throws NullPointerException if {@code sample} is {@code null}
+     * @throws IllegalArgumentException if {@code sample} is empty
+     */
+    private static HashMap<String, Object> getSampleStatistics(ArrayList<Double> sample) {
+        if (sample == null) {
+            throw new NullPointerException("Smaple is null");
+        }
+
+        HashMap<String, Object> statistics = new HashMap<String, Object>();
+
+        if (sample.isEmpty()) {
+            statistics.put("mean", "Undefined");
+            statistics.put("median", "Undefined");
+            statistics.put("min", "Undefined");
+            statistics.put("max", "Undefined");
+        }
+        else {
+            statistics.put("mean", mean(sample));
+            statistics.put("median", median(sample));
+            statistics.put("min", min(sample));
+            statistics.put("max", max(sample));
+        }
+
+        return statistics;
     }
 
     /**

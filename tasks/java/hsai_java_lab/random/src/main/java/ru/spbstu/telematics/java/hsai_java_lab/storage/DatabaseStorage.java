@@ -18,6 +18,7 @@ public class DatabaseStorage implements Storage {
     private static Statement statement;
 
     private final String sqlTableName = "random_values_table";
+    private final String propertyPath = "../resources/storage.properties";
     
     @Override
     public String saveTable(ArrayList<RandomValue> table, String name, int rowNumber) throws StorageException {
@@ -35,7 +36,7 @@ public class DatabaseStorage implements Storage {
         /* Get DB path from property file */
         String filePath;
 
-        try (InputStream istream = new FileInputStream("src/main/resources/storage.properties")) {
+        try (InputStream istream = new FileInputStream(propertyPath)) {
             Properties storageProp = new Properties();
             storageProp.load(istream);
             filePath = storageProp.getProperty("db.folder") + "/" + tableName + ".db";

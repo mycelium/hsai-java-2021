@@ -11,7 +11,7 @@ import java.util.Properties;
 import ru.spbstu.telematics.java.hsai_java_lab.value.RandomValue;
 
 public class CsvStorage implements Storage {
-    private final String propertyPath = "src/main/resources/storage.properties";
+    private final String propertyPath = "../resources/storage.properties";
 
     @Override
     public String saveTable(ArrayList<RandomValue> table, String name, int rowNumber) throws StorageException {
@@ -45,22 +45,10 @@ public class CsvStorage implements Storage {
 
         String header = String.join(",", names);
 
-        /* Create array of data rows */
-        ArrayList<String> tableRows = new ArrayList<String>(table.size());
-        for (int i = 0; i < rowNumber; i++) {
-            ArrayList<String> row = new ArrayList<String>();
-
-            for (int j = 0; j < columnNumber; j++) {
-                row.add(String.format("%10.5f", table.get(j).generate()).replace(",", "."));
-            }
-
-            tableRows.add(String.join(",", row));
-        }
-
         /* Open/Create File to write data */
         String filePath;
 
-        try (InputStream istream = new FileInputStream(propertyPath)) {
+        try (InputStream istream = new FileInputStream("../resources/storage.properties")) {
             Properties storageProp = new Properties();
             storageProp.load(istream);
             filePath = storageProp.getProperty("csv.folder") + "/" + tableName + ".csv";
@@ -70,6 +58,8 @@ public class CsvStorage implements Storage {
         }
 
         /* Populate File with data */
+        ArrayList<String> tableRows = new ArrayList<String>(table.size());
+
         try {
             File fout = new File(filePath);
             FileWriter foutWriter = new FileWriter(fout);
