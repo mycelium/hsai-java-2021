@@ -10,13 +10,13 @@ public class Poisson extends Distribution<Integer> {
 
     @Override
     public Integer getRandom() {
-        double p = Math.exp(-mean);
         int x = 0;
-        double r = random.nextDouble();
-        double a = r;
-        while (!(a < p)) {
-            x++;
-            a *= r;
+        double p = Math.exp(-mean);
+        double r = random.nextDouble() - p;
+        while (r > 0) {
+            x ++;
+            p *= ((double) mean) / x;
+            r -= p;
         }
         return x;
     }
