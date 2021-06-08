@@ -19,9 +19,9 @@ public class AppTest {
     void SystemTestCSV() throws IOException {
         Table table = new Table("Table1");
         table
-                .add(AutoSamplesFactory.getNormal("Normal", 1., -10.))
-                .add(AutoSamplesFactory.getPoisson("Poisson", 10))
-                .add(AutoSamplesFactory.getUniform("Uniform", -50., -40.));
+                .add(AutoSamplesFactory.getNormal("Normal 1, -10", 1., -10.))
+                .add(AutoSamplesFactory.getPoisson("Poisson 10", 10))
+                .add(AutoSamplesFactory.getUniform("Uniform [-50; -40]", -50., -40.));
         table.generate(30);
         CSVTableWriter writer = new CSVTableWriter(CSV_FILE);
         writer.write(table);
