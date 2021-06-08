@@ -5,6 +5,9 @@ public class Poisson extends Distribution<Integer> {
     private Integer mean;
 
     public Poisson(Integer mean) {
+        if (mean <= 0) {
+            throw new IllegalArgumentException("Mean must be > 0, but mean = " + mean);
+        }
         this.mean = mean;
     }
 
