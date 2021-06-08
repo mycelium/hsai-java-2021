@@ -11,9 +11,6 @@ public class Cartesian {
                 re[1] = set2[indexRight];
             }
         }
-        for (Object[] pair : res) {
-            System.out.println(pair[0].toString() + " : " + pair[1].toString());
-        }
         return res;
     }
 
