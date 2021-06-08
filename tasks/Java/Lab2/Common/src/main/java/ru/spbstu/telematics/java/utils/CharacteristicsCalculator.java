@@ -14,15 +14,6 @@ public class CharacteristicsCalculator {
         return (sum / tmp.size());
     }
 
-    public static double deviation (Sample sample) {
-        ArrayList<Double> tmp = sample.getValues();
-        double mean = mean(sample);
-        double sum = 0;
-        for(Double d: tmp)
-            sum += ((d - mean) * (d - mean));
-        return (sum / tmp.size());
-    }
-
     public static double median (Sample sample) {
         ArrayList<Double> tmp = new ArrayList<>(sample.getValues());
         Collections.sort(tmp);
