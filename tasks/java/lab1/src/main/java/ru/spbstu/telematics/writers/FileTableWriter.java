@@ -8,6 +8,12 @@ import java.nio.file.Path;
 
 abstract class FileTableWriter {
 
+    protected Path outPath;
+
+    public FileTableWriter(String out) {
+        this.outPath = Path.of(out);
+    }
+
     protected Path createFileWithExtension(String filePath, String extension) throws IOException {
         Path path = Path.of(filePath);
         if (!filePath.endsWith(extension)) {
@@ -20,6 +26,6 @@ abstract class FileTableWriter {
         return path;
     }
 
-    abstract void write(Table table, String filePath) throws Exception;
+    abstract void write(Table table) throws Exception;
 
 }
