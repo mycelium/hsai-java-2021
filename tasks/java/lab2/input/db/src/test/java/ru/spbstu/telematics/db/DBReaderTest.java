@@ -12,7 +12,7 @@ public class DBReaderTest {
 
     @Test
     public void DBReaderCorrectLinesTest() throws Exception {
-        TableReader reader = new DBReader(DB_FILE);
+        TableReader reader = new DBReader(DB_FILE, "Table1");
         var list = reader.readAllDistribution();
         Assert.assertEquals(list.size(), SIZE);
         for (var distribution : list) {
