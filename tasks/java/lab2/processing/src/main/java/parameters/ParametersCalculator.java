@@ -1,10 +1,11 @@
 package parameters;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-class ParametersCalculator {
+public class ParametersCalculator {
 
     public static Optional<Double> mean(List<Double> sample) {
         if (sample == null || sample.size() == 0) {
@@ -38,5 +39,11 @@ class ParametersCalculator {
             return Optional.empty();
         }
         return sample.stream().min(Double::compareTo);
+    }
+
+    public static double percentile(List<Double> latencies, double percentile) {
+        Collections.sort(latencies);
+        int index = (int) Math.ceil(percentile / 100.0 * latencies.size());
+        return latencies.get(index-1);
     }
 }

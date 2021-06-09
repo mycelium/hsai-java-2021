@@ -1,6 +1,5 @@
 package parameters;
 
-import analyzer.normality.NormalityAnalyzer;
 import sample.Variable;
 
 import java.util.Map;
@@ -10,12 +9,10 @@ import java.util.TreeMap;
 public class ResultParameters {
 
     private Map<String, Optional<Double>> properties = new TreeMap();
-    private boolean isNormal;
     private String name;
 
     public ResultParameters(Variable<Double> variable) {
         name = variable.getName();
-        isNormal = NormalityAnalyzer.isNormal(variable);
         properties.put("max", ParametersCalculator.max(variable));
         properties.put("min", ParametersCalculator.min(variable));
         properties.put("mean", ParametersCalculator.mean(variable));
@@ -32,8 +29,7 @@ public class ResultParameters {
             json.append(entry.getValue().get());
             json.append(",");
         }
-        json.append("\"isNormal\":");
-        json.append(isNormal);
+        json.deleteCharAt(json.length() - 1);
         json.append("}");
         return json.toString();
     }
