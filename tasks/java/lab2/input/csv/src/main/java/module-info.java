@@ -1,0 +1,3 @@
+module csv {
+    requires input;
+}
