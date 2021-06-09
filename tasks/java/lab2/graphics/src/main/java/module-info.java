@@ -1,0 +1,3 @@
+module graphics {
+    exports graph;
+}
