@@ -1,7 +1,6 @@
-package result;
+package parameters;
 
 import analyzer.normality.NormalityAnalyzer;
-import parameters.ParametersCalculator;
 import sample.Variable;
 
 import java.util.Map;

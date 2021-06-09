@@ -14,6 +14,8 @@
         <module>csv</module>
         <module>processing</module>
         <module>normality</module>
+        <module>json</module>
+        <module>graphics</module>
     </modules>
     <dependencies>
         <dependency>
@@ -25,6 +27,12 @@
         <dependency>
             <groupId>ru.spbstu.telematics</groupId>
             <artifactId>db</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>ru.spbstu.telematics</groupId>
+            <artifactId>processing</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>

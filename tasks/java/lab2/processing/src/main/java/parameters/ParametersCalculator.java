@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class ParametersCalculator {
+class ParametersCalculator {
 
     public static Optional<Double> mean(List<Double> sample) {
         if (sample == null || sample.size() == 0) {
