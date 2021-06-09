@@ -2,13 +2,18 @@ package analyzer.normality;
 
 import parameters.ParametersCalculator;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class NormalityAnalyzer {
 
-    static public boolean isNormal(List<Double> sample) {
+    static public List<Boolean> isNormal(List<List<Double>> sample) {
+        return sample.stream()
+                .map(NormalityAnalyzer::isNormalOne)
+                .collect(Collectors.toList());
+    }
+
+    static private boolean isNormalOne(List<Double> sample) {
         List<Double> copy = sample.stream()
                 .sorted()
                 .collect(Collectors.toList());

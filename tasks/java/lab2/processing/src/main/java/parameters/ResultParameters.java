@@ -2,16 +2,24 @@ package parameters;
 
 import sample.Variable;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 public class ResultParameters {
 
     private Map<String, Optional<Double>> properties = new TreeMap();
     private String name;
 
-    public ResultParameters(Variable<Double> variable) {
+    public static List<ResultParameters> getResultParameters(List<Variable<Double>> variables) {
+        return variables.stream()
+                .map(ResultParameters::new)
+                .collect(Collectors.toList());
+    }
+
+    ResultParameters(Variable<Double> variable) {
         name = variable.getName();
         properties.put("max", ParametersCalculator.max(variable));
         properties.put("min", ParametersCalculator.min(variable));
