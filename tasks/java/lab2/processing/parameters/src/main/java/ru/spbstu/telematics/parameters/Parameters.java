@@ -13,7 +13,7 @@ public class Parameters {
         return Optional.of(sample.stream().mapToDouble(d -> d).sum() / sample.size());
     }
 
-    public static Optional<Double> meadian(List<Double> sample) {
+    public static Optional<Double> median(List<Double> sample) {
         if (sample == null || sample.size() == 0) {
             return Optional.empty();
         }
