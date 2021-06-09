@@ -1,8 +1,8 @@
 package ru.spbstu.telematics.db;
 
+import ru.spbstu.telematics.list.Variable;
 import ru.spbstu.telematics.reader.TableReader;
 
-import java.io.IOException;
 import java.nio.file.Path;
 import java.sql.*;
 import java.util.ArrayList;
@@ -19,14 +19,15 @@ public class DBReader implements TableReader {
     }
 
     @Override
-    public List<List<Double>> readAllDistribution() throws IOException, SQLException {
+    public List<Variable<Double>> readAllDistribution() throws SQLException {
         Connection connection = DriverManager.getConnection("jdbc:sqlite:" + file.toAbsolutePath().toString());
         Statement statement = connection.createStatement();
         var rs = statement.executeQuery("SELECT * FROM " + table);
-        int columns = rs.getMetaData().getColumnCount();
-        List<List<Double>> result = new ArrayList<>(columns - 1);
-        for (int i = 0; i < columns - 1; i++) {
-            result.add(new ArrayList<>());
+        var metaData = rs.getMetaData();
+        int columns = metaData.getColumnCount();
+        List<Variable<Double>> result = new ArrayList<>(columns - 1);
+        for (int i = 2; i <= columns; i++) {
+            result.add(new Variable<>(metaData.getColumnName(i)));
         }
         while(rs.next()){
             for (int i = 2; i <= columns; i++){

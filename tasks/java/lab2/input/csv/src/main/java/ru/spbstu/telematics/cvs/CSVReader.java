@@ -1,5 +1,6 @@
 package ru.spbstu.telematics.cvs;
 
+import ru.spbstu.telematics.list.Variable;
 import ru.spbstu.telematics.reader.TableReader;
 
 import java.io.BufferedReader;
@@ -20,20 +21,28 @@ public class CSVReader implements TableReader {
     }
 
     @Override
-    public List<List<Double>> readAllDistribution() throws IOException {
+    public List<Variable<Double>> readAllDistribution() throws IOException {
         BufferedReader inputStream = Files.newBufferedReader(file);
-        List<List<Double>> data = new ArrayList<>();
+        String[] names = getNames(inputStream.readLine());
+        List<Variable<Double>> data = new ArrayList<>(names.length);
+        for (int i = 0; i < names.length; i++) {
+            data.add(new Variable<>(names[i]));
+        }
         List<Double> line;
         while ((line = readLine(inputStream)) != null) {
-            for (int i = data.size(); i < line.size(); i++) {
-                data.add(new ArrayList<>());
-            }
             for (int i = 0; i < line.size(); i++) {
                 data.get(i).add(line.get(i));
             }
         }
         inputStream.close();
         return data;
+    }
+
+    private String[] getNames(String names) {
+        String[] tmp = names.split("\"\\s*?,\\s*\"");
+        tmp[0] = tmp[0].substring(1);
+        tmp[tmp.length - 1] = tmp[tmp.length - 1].substring(0, tmp[tmp.length - 1].length() - 1);
+        return tmp;
     }
 
     private List<Double> readLine(BufferedReader inputStream) throws IOException {
