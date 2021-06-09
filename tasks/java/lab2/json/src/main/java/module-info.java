@@ -1,0 +1,3 @@
+module json {
+    exports writer;
+}
