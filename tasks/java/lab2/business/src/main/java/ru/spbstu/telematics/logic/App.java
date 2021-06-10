@@ -1,11 +1,13 @@
 package ru.spbstu.telematics.logic;
 
+import ru.spbstu.telematics.parameters.ResultParameters;
 import ru.spbstu.telematics.reader.csv.CSVReader;
 import ru.spbstu.telematics.reader.db.DBReader;
 import ru.spbstu.telematics.variables.Variable;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 public class App {
 
@@ -25,6 +27,7 @@ public class App {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+        List<ResultParameters> resultParameters = ResultParameters.getResultParameters(null);
     }
 
 }

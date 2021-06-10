@@ -13,6 +13,7 @@
         <module>csv</module>
         <module>business</module>
         <module>db</module>
+        <module>processing</module>
     </modules>
 
     <properties>
