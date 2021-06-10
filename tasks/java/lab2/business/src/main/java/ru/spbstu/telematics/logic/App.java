@@ -16,24 +16,25 @@ public class App {
 
     public static void main(String[] args) throws IOException {
         System.out.println("Start");
-        var csvReader = new CSVReader("");
-        var dbReader = new DBReader("", "");
-        Variable<Double> rs = new Variable<>("dss");
-        System.out.println(rs.getName());
-        new Painter(null);
-        new JSONWriter("");
-        NormalityAnalyzer.isNormal(null);
-        try {
-            csvReader.readAllDistribution();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            dbReader.readAllDistribution();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        List<ResultParameters> resultParameters = ResultParameters.getResultParameters(null);
+        Variable<Double> variable = new Variable<>("First");
+//        var csvReader = new CSVReader("");
+//        var dbReader = new DBReader("", "");
+//        Variable<Double> rs = new Variable<>("dss");
+//        System.out.println(rs.getName());
+//        new Painter(null);
+//        new JSONWriter("");
+//        NormalityAnalyzer.isNormal(null);
+//        try {
+//            csvReader.readAllDistribution();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        try {
+//            dbReader.readAllDistribution();
+//        } catch (SQLException throwables) {
+//            throwables.printStackTrace();
+//        }
+//        List<ResultParameters> resultParameters = ResultParameters.getResultParameters(null);
     }
 
 }

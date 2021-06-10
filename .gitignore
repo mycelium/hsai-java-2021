@@ -22,9 +22,6 @@
 #IntelliJ IDEA 
 .idea/
 
-#IML files
-*.iml
-
 #Output
 target/
 build/
