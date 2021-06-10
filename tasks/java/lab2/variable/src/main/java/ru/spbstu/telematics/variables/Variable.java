@@ -14,6 +14,7 @@ public class Variable<T> extends ArrayList<T> {
 
     public Variable(String name) {
         logger.error("1111");
+        logger.info("Create " + name);
         this.name = name;
     }
 
