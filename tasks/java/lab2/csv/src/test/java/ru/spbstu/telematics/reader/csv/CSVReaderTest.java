@@ -26,7 +26,7 @@ public class CSVReaderTest {
         Assert.assertEquals(list.size(), samples);
         for (int i = 0; i < list.size(); i++) {
             Assert.assertEquals(list.get(i).size(), values);
-            Assert.assertEquals(list.get(i).getName(), NAMES[i]);
+            Assert.assertEquals(list.get(i).getName(), names[i]);
         }
     }
 }
