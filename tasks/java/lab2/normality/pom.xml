@@ -2,20 +2,22 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>sample</artifactId>
+        <groupId>ru.spbstu.telematics</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>ru.spbstu.telematics</groupId>
-    <artifactId>sample</artifactId>
-    <packaging>pom</packaging>
-    <version>1.0-SNAPSHOT</version>
-    <modules>
-        <module>variable</module>
-        <module>csv</module>
-        <module>business</module>
-        <module>db</module>
-        <module>processing</module>
-        <module>normality</module>
-    </modules>
+    <artifactId>normality</artifactId>
+    <dependencies>
+        <dependency>
+            <groupId>ru.spbstu.telematics</groupId>
+            <artifactId>processing</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>

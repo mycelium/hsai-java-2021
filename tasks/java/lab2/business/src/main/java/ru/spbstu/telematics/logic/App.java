@@ -1,5 +1,6 @@
 package ru.spbstu.telematics.logic;
 
+import ru.spbstu.telematics.analyzer.normality.NormalityAnalyzer;
 import ru.spbstu.telematics.parameters.ResultParameters;
 import ru.spbstu.telematics.reader.csv.CSVReader;
 import ru.spbstu.telematics.reader.db.DBReader;
@@ -17,6 +18,7 @@ public class App {
         var dbReader = new DBReader("", "");
         Variable<Double> rs = new Variable<>("dss");
         System.out.println(rs.getName());
+        NormalityAnalyzer.isNormal(null);
         try {
             csvReader.readAllDistribution();
         } catch (IOException e) {
