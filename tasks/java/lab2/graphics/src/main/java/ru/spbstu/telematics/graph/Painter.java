@@ -1,11 +1,14 @@
 package ru.spbstu.telematics.graph;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.knowm.xchart.BitmapEncoder;
 import org.knowm.xchart.CategoryChart;
 import org.knowm.xchart.CategoryChartBuilder;
 import org.knowm.xchart.internal.chartpart.Chart;
 import ru.spbstu.telematics.variables.Variable;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -13,6 +16,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Painter {
+
+    private static Logger logger = LogManager.getLogger(Painter.class);
 
     private List<Variable<Double>> variables;
 
@@ -22,9 +27,10 @@ public class Painter {
 
     public void plotHists(String dir) throws IOException {
         Path directory = Path.of(dir);
+        logger.info("Paint into: " + dir);
         int counter = 0;
         for (Variable<Double> variable : variables) {
-            Path file = Path.of(dir + "/" + variable.getName() + counter++);
+            Path file = Path.of(dir + File.separator + variable.getName() + counter++);
             plotHist(variable, file);
         }
     }
@@ -63,6 +69,7 @@ public class Painter {
     }
 
     private void save(Chart chart, Path filePath) throws IOException {
+        logger.info("Saving chart: \"" + chart.toString() + "\" to file: " + filePath.toString());
         BitmapEncoder.saveBitmap(chart, filePath.toString(), BitmapEncoder.BitmapFormat.PNG);
     }
 
