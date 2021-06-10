@@ -1,23 +1,32 @@
 package ru.spbstu.telematics.reader.csv;
 
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class CSVReaderTest {
 
-    private final String CSV_FILE = "src/test/resources/outCSV.csv";
-    private final int NUMBER_OF_VALUES = 30;
-    private final int SIZE = 3;
+    private final String DIR = "src/test/resources/";
+    private final String file1 = "file1.csv";
+    private final String file2 = "file2.csv";
+    private final String[] NAMES = new String[] {"Normal 1, -10", "Poisson 10", "Uniform [-50; -40]"};
 
-    @Test
-    public void CSVReaderCorrectLinesTest() throws Exception {
-        CSVReader reader = new CSVReader(CSV_FILE);
+    @DataProvider(name = "withNames")
+    public Object[][] correctInput() {
+        return new Object[][] {
+                new Object[] {DIR + file1, 0, 3, NAMES},
+                new Object[] {DIR + file2, 30, 3, NAMES}
+        };
+    }
+
+    @Test(dataProvider = "withNames")
+    public void CSVReaderCorrectLinesTest(String file, int values, int samples, String[] names) throws Exception {
+        CSVReader reader = new CSVReader(file);
         var list = reader.readAllDistribution();
-        Assert.assertEquals(list.size(), SIZE);
-        for (var distribution : list) {
-//            System.out.println(distribution.getName());
-//            distribution.forEach(System.out::println);
-            Assert.assertEquals(distribution.size(), NUMBER_OF_VALUES);
+        Assert.assertEquals(list.size(), samples);
+        for (int i = 0; i < list.size(); i++) {
+            Assert.assertEquals(list.get(i).size(), values);
+            Assert.assertEquals(list.get(i).getName(), NAMES[i]);
         }
     }
 }
