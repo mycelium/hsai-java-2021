@@ -3,4 +3,5 @@ module business {
     requires db;
     requires processing;
     requires normality;
+    requires json;
 }
