@@ -18,7 +18,7 @@ public class AppTest {
     final String DIR = "src/test/resources/AppTest";
     final String CSV_FILE = DIR + "/" + "outCSV.csv";
     final String DB_FILE = DIR + "/" + "outDB.db";
-    final Integer GENERATED = 30;
+    final Integer GENERATED = 70000;
 
     @Test
     public void SystemTestCSV() throws IOException {
@@ -26,7 +26,12 @@ public class AppTest {
         table
                 .add(AutoSamplesFactory.getNormal("Normal 1, -10", 1., -10.))
                 .add(AutoSamplesFactory.getPoisson("Poisson 10", 10))
-                .add(AutoSamplesFactory.getUniform("Uniform [-50; -40]", -50., -40.));
+                .add(AutoSamplesFactory.getUniform("Uniform [-50; -40]", -50., -40.))
+                .add(AutoSamplesFactory.getPoisson("Poisson 15", 15))
+                .add(AutoSamplesFactory.getNormal("Normal 10, 100", 10., 100.))
+                .add(AutoSamplesFactory.getNormal("Normal 5, -35", 5., -35.))
+                .add(AutoSamplesFactory.getUniform("Uniform [-100; -80]", -100., -80.))
+                .add(AutoSamplesFactory.getUniform("Uniform [0; 10]", 0., 10.));
         table.generate(GENERATED);
         Assert.assertNotNull(table.getNumberOfValues());
         Assert.assertEquals(table.getNumberOfValues(), GENERATED);
@@ -42,7 +47,12 @@ public class AppTest {
         table
                 .add(AutoSamplesFactory.getNormal("Normal", 1., -10.))
                 .add(AutoSamplesFactory.getPoisson("Poisson", 10))
-                .add(AutoSamplesFactory.getUniform("Uniform", -50., -40.));
+                .add(AutoSamplesFactory.getUniform("Uniform", -50., -40.))
+                .add(AutoSamplesFactory.getPoisson("Poisson", 15))
+                .add(AutoSamplesFactory.getNormal("Normal", 10., 100.))
+                .add(AutoSamplesFactory.getNormal("Normal", 5., -35.))
+                .add(AutoSamplesFactory.getUniform("Uniform", -100., -80.))
+                .add(AutoSamplesFactory.getUniform("Uniform", 0., 10.));
         table.generate(GENERATED);
         Assert.assertNotNull(table.getNumberOfValues());
         Assert.assertEquals(table.getNumberOfValues(), GENERATED);

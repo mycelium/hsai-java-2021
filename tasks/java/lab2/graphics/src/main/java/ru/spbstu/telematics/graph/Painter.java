@@ -30,14 +30,14 @@ public class Painter {
         logger.info("Paint into: " + dir);
         int counter = 0;
         for (Variable<Double> variable : variables) {
-            Path file = Path.of(dir + File.separator + variable.getName() + counter++);
+            Path file = Path.of(dir + File.separator + variable.getName() + "_" + counter++ + ".png");
             plotHist(variable, file);
         }
     }
 
     private void plotHist(Variable<Double> variable, Path filePath) throws IOException {
-        int numberOfBar = (int) Math.log(variable.size()) + 1;
-        double min = variable.stream().max(Double::compareTo).get();
+        int numberOfBar = (int) Math.log(variable.size()) * 2 + 1;
+        double min = variable.stream().min(Double::compareTo).get();
         double width = variable.stream().max(Double::compareTo).get() - min;
         double barWidth = width / numberOfBar;
         List<Long> bars = new ArrayList<>(numberOfBar);
@@ -46,11 +46,14 @@ public class Painter {
         }
         for (Double value : variable) {
             double pos = value - min;
-            int index = (int) (pos / width);
-            bars.set(index, bars.get(index));
+            int index = (int) (pos / barWidth);
+            if (index == numberOfBar)
+                index -= 1;
+            bars.set(index, bars.get(index) + 1);
         }
         List<Double> x = new ArrayList<>();
         for (int i = 0; i < numberOfBar; i++) {
+            logger.debug(i + " Bar bound = " + min);
             x.add(min);
             min += barWidth;
         }

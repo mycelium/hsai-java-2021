@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class NormalityAnalyzer {
 
-    static public List<Boolean> isNormal(List<List<Double>> sample) {
+    static public List<Boolean> isNormal(List<? extends List<Double>> sample) {
         return sample.stream()
                 .map(NormalityAnalyzer::isNormalOne)
                 .collect(Collectors.toList());

@@ -2,12 +2,14 @@ package ru.spbstu.telematics.writer.json;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import ru.spbstu.telematics.parameters.ResultParameters;
 
 import java.io.BufferedOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.List;
 
 public class JSONWriter {
 
@@ -20,13 +22,13 @@ public class JSONWriter {
         path = createFileWithExtension(filePath, ".json");
     }
 
-    public void write(String[] variables) throws IOException {
+    public void write(List<ResultParameters> variablesList) throws IOException {
         DataOutputStream dataOutputStream = new DataOutputStream(new BufferedOutputStream(Files.newOutputStream(path)));
         StringBuilder resultJSON = new StringBuilder("{\"variables\": [\n");
         String prefix = "";
-        for (String variable : variables) {
+        for (ResultParameters variable : variablesList) {
             resultJSON.append(prefix);
-            resultJSON.append(variable);
+            resultJSON.append(variable.toJSON());
             prefix = ",\n";
         }
         resultJSON.append("]}");
