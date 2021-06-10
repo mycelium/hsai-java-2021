@@ -18,7 +18,7 @@ public class JSONWriterTest {
     private int SIZE1 = 100;
 
     @DataProvider(name = "parameters")
-    public Object[] ResultParameters() {
+    public Object[][] ResultParameters() {
         Variable<Double> first = new Variable<>("first");
         Variable<Double> second = new Variable<>("second");
         for (int i = -100; i < SIZE1; i++) {
