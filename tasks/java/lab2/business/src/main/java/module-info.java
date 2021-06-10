@@ -4,4 +4,5 @@ module business {
     requires processing;
     requires normality;
     requires json;
+    requires graphics;
 }

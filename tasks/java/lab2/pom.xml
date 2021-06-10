@@ -16,6 +16,7 @@
         <module>processing</module>
         <module>normality</module>
         <module>json</module>
+        <module>graphics</module>
     </modules>
 
     <properties>
