@@ -17,8 +17,8 @@ public class NormalityAnalyzer {
         List<Double> copy = sample.stream()
                 .sorted()
                 .collect(Collectors.toList());
-        double quartile25 = ParametersCalculator.percentile(copy, 0.25);
-        double quartile75 = ParametersCalculator.percentile(copy, 0.75);
+        double quartile25 = ParametersCalculator.percentile(copy, 0.25).get();
+        double quartile75 = ParametersCalculator.percentile(copy, 0.75).get();
         double d = quartile75 - quartile25;
         double x1 = Math.max(copy.get(0), quartile25 - 3 * d / 2);
         double x2 = Math.min(copy.get(copy.size() - 1), quartile75 + 3 * d / 2);

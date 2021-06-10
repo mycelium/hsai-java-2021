@@ -41,10 +41,13 @@ public class ParametersCalculator {
         return sample.stream().min(Double::compareTo);
     }
 
-    public static double percentile(List<Double> latencies, double percentile) {
-        Collections.sort(latencies);
-        int index = (int) Math.ceil(percentile / 100.0 * latencies.size());
-        return latencies.get(index-1);
+    public static Optional<Double> percentile(List<Double> latencies, double percentile) {
+        var list = latencies.stream().sorted().collect(Collectors.toList());
+        int index = (int) Math.ceil(percentile * list.size());
+        if (list.isEmpty()) {
+            return Optional.empty();
+        }
+        return Optional.of(list.get(index-1));
     }
 }
 

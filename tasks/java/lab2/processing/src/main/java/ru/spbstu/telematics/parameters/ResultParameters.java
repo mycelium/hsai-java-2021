@@ -1,5 +1,7 @@
 package ru.spbstu.telematics.parameters;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import ru.spbstu.telematics.variables.Variable;
 
 import java.util.List;
@@ -10,6 +12,7 @@ import java.util.stream.Collectors;
 
 public class ResultParameters {
 
+    private static Logger logger = LogManager.getLogger(Variable.class);
     private Map<String, Optional<Double>> properties = new TreeMap();
     private String name;
 
@@ -25,6 +28,7 @@ public class ResultParameters {
         properties.put("min", ParametersCalculator.min(variable));
         properties.put("mean", ParametersCalculator.mean(variable));
         properties.put("median", ParametersCalculator.median(variable));
+        logger.debug("Create ResultParameters: " + this.toJSON());
     }
 
     public String toJSON() {
