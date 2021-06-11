@@ -12,15 +12,9 @@ import java.util.Hashtable;
 /**
  * Unit test for simple App.
  */
-public class AppTest 
-    extends TestCase
+public class AppTest
+        extends TestCase
 {
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-
     static Dictionary<Param, Double> createParams() {
         Dictionary<Param, Double> params = new Hashtable<>();
         params.put(Param.LAMBDA, 4.);
@@ -39,7 +33,7 @@ public class AppTest
 
     public static Test suite()
     {
-        return new TestSuite( business.AppTest.class );
+        return new TestSuite( AppTest.class );
     }
 
 
