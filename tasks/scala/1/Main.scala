@@ -33,23 +33,14 @@ object Main {
    * Exercise 2 Parentheses Balancing
    */
   def balance(chars: List[Char]): Boolean = {
-    var sum: Int = 0
-
-    def found(c: Char): Int =
-      c match {
-        case '(' => 1
-        case ')' => -1
-        case _ => 0
-      }
-
-    def search(ind: Int): Unit = {
-      sum += found(chars.apply(ind))
-      if (ind < chars.length - 1) search(ind + 1)
+    def found(chars: List[Char], counter: Int): Boolean = chars match {
+      case '(' :: tail => found(tail, counter + 1)
+      case ')' :: tail => found(tail, counter - 1)
+      case _ :: tail => found(tail, counter)
+      case Nil => counter == 0
     }
 
-    search(0)
-
-    sum == 0
+    found(chars, 0)
   }
 
   /**
@@ -59,15 +50,20 @@ object Main {
    * there is 1 way to give change for 5 if you have coins with denomiation
    * 2 and 3: 2+3.
    */
-  def countChange(money: Int, coins: List[Int]): Int =
-    if (money < 0) 0 else if (money == 0) 1 else {
-
-      var sum: Int = 0
-      for (i <- coins.indices)
-        sum += countChange(money - coins.apply(i), coins)
-
-      sum
-
+  def countChange(money: Int, coins: List[Int]): Int = {
+    def rec(money: Int, coinsInner: List[Int]): Int = {
+      if (money <= 0) { if (money == 0) 1 else 0 }
+      else {
+        var counter = 0
+        for (i <- coinsInner.indices) {
+          counter += countChange(money - coinsInner(i), coinsInner.take(i + 1))
+        }
+        counter
+      }
     }
+
+    rec(money, coins.sorted)
+
+  }
 
 }
