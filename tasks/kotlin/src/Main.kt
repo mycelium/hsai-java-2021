@@ -1,13 +1,29 @@
 import Grek;
 
-fun main()
+fun main(args : Array<String>)
 {
-    var path = System.getProperty("user.dir");
+    var grek : Grek;
 
-    println(path);
+    if(args.isEmpty()) {
+        var path = System.getProperty("user.dir");
 
-    //var grek = Grek("grek -n one $path\\file.txt");
-    var grek = Grek("grek -nr one $path\\Resources");
+        println(path);
+
+        //var grek = Grek("grek -n one $path\\file.txt");
+        grek = Grek("grek -nr one $path\\Resources");
+    }
+    else
+    {
+        var grekArg = ""
+        for (word in args)
+        {
+            grekArg = grekArg + " " + word;
+        }
+
+        grekArg = grekArg.removeRange(0, 1)
+
+        grek = Grek(grekArg)
+    }
 
     var lines = grek.Find();
 
