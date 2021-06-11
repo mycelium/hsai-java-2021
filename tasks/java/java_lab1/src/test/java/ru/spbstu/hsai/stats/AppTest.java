@@ -34,6 +34,17 @@ public class AppTest
 
     public AppTest( String testName )
     {
+        super( testName );
+    }
+
+    public static Test suite()
+    {
+        return new TestSuite( business.AppTest.class );
+    }
+
+
+    public void testApp()
+    {
         ArrayList<Double> tn = new ArrayList<>();
         ArrayList<Double> tu = new ArrayList<>();
         ArrayList<Double> tp = new ArrayList<>();
