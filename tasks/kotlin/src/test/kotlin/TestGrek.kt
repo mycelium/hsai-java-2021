@@ -1,4 +1,5 @@
 import org.junit.Test
+import wsyconan.kotlin.grek.main
 
 class TestGrek {
     var email: String = "\\w[-\\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\\.)+[A-Za-z]{2,14}"
@@ -9,25 +10,31 @@ class TestGrek {
 
     @Test
     fun testFile1() {
-        val t1 = Grek("grek -n $email $filePath1")
-        t1.execute()
+        val tester = main("grek -n $email $filePath1")
     }
 
     @Test
     fun testFile2() {
-        val t1 = Grek("grek -n $doc $filePath1")
-        t1.execute()
+        val tester = main("grek -n $doc $filePath1")
     }
 
     @Test
     fun testFolder() {
-        val t1 = Grek("grek -nr $doc $folderPath")
-        t1.execute()
+        val tester = main("grek -nr $doc $folderPath")
     }
 
     @Test
     fun testFile3(){
-        val t1 = Grek("grek -n -A 2 -B 2 $doc $filePath1")
-        t1.execute()
+        val tester = main("grek -n -A 2 -B 2 $doc $filePath1")
+    }
+
+    @Test
+    fun testFold2(){
+        val tester = main("grek -QaQ")
+    }
+
+    @Test
+    fun testFold3(){
+        val tester = main("grek -nr $email ${folderPath+1}")
     }
 }

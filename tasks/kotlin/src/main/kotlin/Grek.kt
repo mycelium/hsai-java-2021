@@ -1,34 +1,14 @@
+package wsyconan.kotlin.grek
+
 import java.io.File
-import java.util.*
+import java.io.IOException
+import kotlin.collections.ArrayList
 
-class Grek constructor(s: String) {
-    private var command: String = ""
-    private var a: Int = 0
-    private var b: Int = 0
-    private var path: String = ""
-    private var pattern: Regex = Regex("")
-    private var fileMode = true
-
-    init {
-        command = s
-    }
+class Grek constructor(private var grek: GrekParser.GrekOptions) {
 
     fun execute() {
-        val params: List<String> = command.split(' ')
-        if (params[0] == "grek" && params.size >= 4) {
-            for (strings in params.withIndex()) {
-                when (strings.value) {
-                    "-n" -> fileMode = true
-                    "-nr" -> fileMode = false
-                    "-B" -> b = params[strings.index + 1].toInt()
-                    "-A" -> a = params[strings.index + 1].toInt()
-                }
-            }
-        }
-        pattern = params[params.lastIndex - 1].toRegex()
-        path = params[params.lastIndex]
-        if (fileMode) matchFile(File(path))
-        else matchFolder()
+        if (grek.recursive) matchFolder(grek.path)
+        else matchFile(File(grek.path))
     }
 
     /**
@@ -36,48 +16,43 @@ class Grek constructor(s: String) {
      * @param file: Path of file to be matched
      */
     private fun matchFile(file: File) {
-        val abQueue: Queue<String> = LinkedList()
-        var oldSize: Int = abQueue.size
-        var found = false
-        file.forEachLine {
-            if (!found) {
-                if (abQueue.size > oldSize + b + 1) {
-                    abQueue.remove()
-                }
-                abQueue.add(it)
-                if (pattern.matches(it)) {
-                    found = true
-                    oldSize = abQueue.size
-                }
-            } else {
-                if (abQueue.size < oldSize + a) {
-                    abQueue.add(it)
-                }
-                if (abQueue.size == oldSize + a) {
-                    found = false
-                    oldSize = abQueue.size
-                }
+        if(!file.exists()){
+            throw IOException("File ${file.canonicalPath} not found!")
+        }
+        val ranges: ArrayList<IntRange> = ArrayList()
+        val lines: List<String> = file.readLines()
+        val lineMap = lines.associateBy {
+            Pair(lines.indexOf(it), it)
+        }
+        // Locate range of indexes
+        lineMap.forEach { (i, s) ->
+            if (grek.pattern.matches(s)) {
+                ranges.add(IntRange(i.first - grek.a, i.first + grek.a))
             }
         }
-        if (found) {
-            oldSize = abQueue.size
-        }
-        if (!abQueue.isEmpty()) {
-            println("From file ${file.canonicalPath} found: ")
-            for (i in 1..oldSize) {
-                println(abQueue.poll())
+        val prints: List<Int> = ranges.flatten().distinct()
+        println("Found from file ${file.canonicalPath}:")
+        lineMap.forEach { (i, s) ->
+            if (prints.contains(i.first)){
+                println(s)
             }
         }
+        println()
     }
+
 
     /**
      * Find matching lines from a folder.
+     * @param path: path of folder.
      */
-    private fun matchFolder() {
-        val fileTreeWalk: FileTreeWalk = File(path).walk()
+    private fun matchFolder(path: String) {
+        val file = File(path)
+        if(!file.exists()){
+            throw IOException("Fold ${file.canonicalPath} does not exist!")
+        }
+        val fileTreeWalk: FileTreeWalk = file.walk()
         fileTreeWalk.maxDepth(1)
             .filter { it.isFile }
-            .filter { it.extension == "txt" }
             .forEach { matchFile(it) }
     }
 }
