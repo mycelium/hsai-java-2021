@@ -2,6 +2,8 @@ package ru.spbstu.telematics.distribution;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class PoissonDistribution implements Distribution {
     static Random random = new Random(System.currentTimeMillis());
@@ -13,7 +15,12 @@ public class PoissonDistribution implements Distribution {
         this.size = size;
     }
 
-    private int getPoissonRandom() {
+    /**
+     * Generate a number that obeys poisson distribution
+     * @return the number
+     */
+    @Override
+    public Double generateOne() {
         double L = Math.exp(-lambda);
         int k = 0;
         double p = 1.0;
@@ -21,15 +28,19 @@ public class PoissonDistribution implements Distribution {
             p = p * random.nextDouble();
             k++;
         } while (p > L);
-        return k - 1;
+        return (double) (k - 1);
     }
 
+    /**
+     * Generate an array that obeys poisson distribution
+     * @return the array
+     */
     @Override
     public ArrayList<Double> generate() {
-        ArrayList<Double> array = new ArrayList<>();
-        for (int i = 0; i < size; i++) {
-            array.add((double)getPoissonRandom());
-        }
+        ArrayList<Double> array;
+        array = Stream.generate(this::generateOne)
+                .limit(size)
+                .collect(Collectors.toCollection(ArrayList::new));
         return array;
     }
 }

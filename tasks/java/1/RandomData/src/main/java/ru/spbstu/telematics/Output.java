@@ -4,6 +4,8 @@ import java.io.*;
 import java.util.ArrayList;
 
 import java.sql.*;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Output {
     File file;
@@ -24,12 +26,9 @@ public class Output {
                 file.createNewFile();
             }
             BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-            int i = 0;
-            for (; i < arrayList.size() - 1; i++) {
-                writer.write(arrayList.get(i) + ",");
-            }
-            writer.write(String.valueOf(arrayList.get(i)));
-            writer.flush();
+            writer.write(arrayList.stream()
+                    .map(Objects::toString)
+                    .collect(Collectors.joining(",")));
             writer.close();
         } catch (FileNotFoundException e) {
             throw new RuntimeException("File not found");
@@ -41,7 +40,7 @@ public class Output {
 
     public String OutputDBF() {
         Connection connection = null;
-        Statement statement = null;
+        Statement statement;
         String sql;
         filePath = "./Output/" + fileName + ".db";
         // connect sqlite
@@ -65,14 +64,10 @@ public class Output {
         try {
             statement = connection.createStatement();
             StringBuilder sb = new StringBuilder("INSERT INTO DATA(VALUE) VALUES");
-            for (int i = 0; i < arrayList.size(); i++) {
-                if (i < arrayList.size() - 1) {
-                    sb.append("(").append(arrayList.get(i)).append("),");
-                } else {
-                    sb.append("(").append(arrayList.get(i)).append(");");
-                }
-            }
-            statement.executeUpdate(sb.toString());
+            sb.append(arrayList.stream()
+                    .map(s -> "(" + s + ")")
+                    .collect(Collectors.joining(",")));
+            statement.executeUpdate(sb.append(";").toString());
             statement.close();
         } catch (Exception e) {
             System.out.println("Insert data failed.");

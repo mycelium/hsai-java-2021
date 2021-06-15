@@ -1,7 +1,10 @@
 package ru.spbstu.telematics.distribution;
 
+import javax.swing.plaf.synth.SynthTextAreaUI;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class NormalDistribution implements Distribution {
     Random random = new Random(System.currentTimeMillis());
@@ -14,12 +17,25 @@ public class NormalDistribution implements Distribution {
         this.sigmaSquared = sigmaSquared;
     }
 
+    /**
+     * Generate a number that obeys normal distribution
+     * @return the number
+     */
+    @Override
+    public Double generateOne() {
+        return Math.sqrt(sigmaSquared) * random.nextGaussian() + mu;
+    }
+
+    /**
+     * Generate an array that obeys normal distribution
+     * @return the array
+     */
     @Override
     public ArrayList<Double> generate() {
-        ArrayList<Double> arrayList = new ArrayList<>();
-        for (int i = 0; i < size; i++) {
-            arrayList.add(Math.sqrt(sigmaSquared) * random.nextGaussian() + mu);
-        }
+        ArrayList<Double> arrayList;
+        arrayList = Stream.generate(this::generateOne)
+                .limit(size)
+                .collect(Collectors.toCollection(ArrayList::new));
         return arrayList;
     }
 }

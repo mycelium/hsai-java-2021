@@ -48,18 +48,18 @@ public class RandomData {
 
     public String generate() {
         switch (distribution) {
-            case "poisson":
+            case "poisson" -> {
                 PoissonDistribution poisson = new PoissonDistribution(size, lambda);
                 data = poisson.generate();
-                break;
-            case "uniform":
+            }
+            case "uniform" -> {
                 UniformDistribution uniform = new UniformDistribution(size, min, max);
                 data = uniform.generate();
-                break;
-            case "normal":
+            }
+            case "normal" -> {
                 NormalDistribution normal = new NormalDistribution(size, mu, sigmaSquared);
                 data = normal.generate();
-                break;
+            }
         }
         output = new Output(name, data);
         if (outputFormat.equals("csv")) {
