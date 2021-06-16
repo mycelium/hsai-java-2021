@@ -26,35 +26,56 @@ object Anagrams {
    */
   val dictionary: List[Word] = loadDictionary
 
+  def joinOccurrences(occur1: Occurrences, occur2: Occurrences): Occurrences = {
+    occur1 match {
+      case (c1, i1) :: rest1 =>
+      {
+        occur2 match
+        {
+          case (c2, i2) :: rest2 =>
+            {
+              if (c1 == c2)
+              {
+                (c2, i1 + i2) :: union(rest1, rest2)
+              }
+              else
+              {
+                if (c1 < c2)
+                {
+                  (c1, i1) :: union(rest1, occur2)
+                }
+                else
+                {
+                  (c2, i2) :: union(occur1, rest2)
+                }
+              }
+            }
+          case Nil => occur1
+        }
+      }
+      case Nil => occur2
+    }
+  }
+
   /** Converts the word into its character occurence list.
-   *  
+   *
    *  Note: the uppercase and lowercase version of the character are treated as the
    *  same character, and are represented as a lowercase character in the occurrence list.
    */
-  def wordOccurrences(w: Word): Occurrences =
-    {
-      var chars : List[(Char, Int)] = List.empty[(Char, Int)];
-      var usedCharsCount = new Array[Int]('z' - 'a' + 1);
-
-      for(c <- w)
-      {
-        //if(c.isLetter) {
-          var lowC = c.toLower;
-          usedCharsCount(lowC - 'a') += 1;
-        //}
-      }
-
-      for( i <- 0 to ('z' - 'a'))
-      {
-        //println(i + " : " + usedCharsCount(i))
-        if(usedCharsCount(i) != 0)
+  def wordOccurrences(word: Word): Occurrences = {
+    @tailrec
+    def recursion(word: Word, occurrences: Occurrences): Occurrences =
+      if (word.isEmpty)
         {
-          chars = chars :+ (('a' + i).asInstanceOf[Char], usedCharsCount(i));
+          occurrences
         }
-      }
+      else
+        {
+          recursion(word.substring(1), joinOccurrences(List((word.charAt(0).toLower, 1)), occurrences))
+        }
 
-      chars;
-    }
+    recursion(word, Nil)
+  }
 
   def mergeOccurrences(o1 : Occurrences, o2 : Occurrences): Occurrences =
   {
@@ -87,36 +108,30 @@ object Anagrams {
 
   /** Converts a sentence into its character occurrence list. */
   def sentenceOccurrences(s: Sentence): Occurrences = {
-    //var words = s.asInstanceOf[String].split(" ")
-    var temp : Occurrences = List.empty[(Char, Int)];
-
-    for(word <- s)
-    {
-      temp = mergeOccurrences(temp, wordOccurrences(word))
-    }
-
-    temp;
+    def recursion(sentence: Sentence, occur: Occurrences): Occurrences =
+      sentence match {
+        case w :: rest => mergeOccurrences(wordOccurrences(w), recursion(rest, occur))
+        case Nil => occur
+      }
+    recursion(s, Nil)
   }
 
-  def formDictByOccurrences(words : List[Word]) = {
-    var res : Map[Occurrences, List[Word]] = Map.empty[Occurrences, List[Word]];
-
-    for(word <- words)
-    {
-      println(word)
-      var oc = wordOccurrences(word);
-      if(res.contains(oc))
+  @tailrec
+  def forDictByOccurrences(old: Map[Occurrences, List[Word]], words: List[Word]): Map[Occurrences, List[Word]] = {
+    words match {
+      case w :: rest =>
       {
-        val newSequence: List[Word] = word :: res.getOrElse(oc, Nil)
-        res = res - oc + (oc -> newSequence)
+        val occur: Occurrences = wordOccurrences(w)
+        val newMap = if (old.contains(occur))
+        {
+          val newSequence: List[Word] = w :: old.getOrElse(occur, Nil)
+          old - occur + (occur -> newSequence)
+        }
+        else old + (occur -> List(w))
+        formMap(newMap, rest)
       }
-      else
-      {
-        res += (oc -> List(word))
-      }
+      case Nil => old
     }
-
-    res
   }
 
   /** The `dictionaryByOccurrences` is a `Map` from different occurrences to a sequence of all
@@ -135,7 +150,7 @@ object Anagrams {
    *
    */
   lazy val dictionaryByOccurrences: Map[Occurrences, List[Word]] = {
-    formDictByOccurrences(dictionary)
+    formDictByOccurrences(Map(), dictionary)
   }
 
   /** Returns all the anagrams of a given word. */
@@ -258,7 +273,7 @@ object Anagrams {
                             curSeq: List[Occurrences],
                             curOccurrence: Occurrences): List[List[Occurrences]] = {
       if (curOccurrence != Nil) {
-        var combs: List[Occurrences] = combinations(curOccurrence).
+        val combs: List[Occurrences] = combinations(curOccurrence).
           filter(oc => dictionaryByOccurrences.contains(oc))
         if (combs != Nil) {
           flatten(combs.map(
