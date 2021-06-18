@@ -17,7 +17,7 @@ public class DataSaving {
         {
             for (Double var: data)
             {
-                fw.write(var.toString() + '\t');
+                fw.write(var.toString() + '\n');
             }
             fw.flush();
         }
