@@ -11,11 +11,11 @@ object Main {
       println()
     }
 
-    /*println()
+    println()
     println(balance(List('(' , '0', '(')))
     println(balance(List('(' , '0', ')', ')')))
 
-    println(countChange(200, List(5, 10)))*/
+    println(countChange(200, List(5, 10)))
   }
 
   /**
@@ -53,12 +53,11 @@ object Main {
   def countChange(money: Int, coins: List[Int]): Int = {
     def rec(money: Int, coinsInner: List[Int]): Int = {
       if (money <= 0) { if (money == 0) 1 else 0 }
-      else {
-        var counter = 0
-        for (i <- coinsInner.indices) {
-          counter += countChange(money - coinsInner(i), coinsInner.take(i + 1))
-        }
-        counter
+      else coinsInner match {
+        case Nil => 0
+        case x :: Nil => if (money % x == 0) 1 else 0
+        case x :: rest => rec(money - x, coinsInner) +
+          rec(money, rest)
       }
     }
 
